@@ -1,0 +1,43 @@
+.menu{   
+    display: flex;
+    background-color: white;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-items{
+    display: flex;
+    justify-content: flex-end;
+    padding: 2%;
+    /* align-items: center; */
+}
+
+.login{
+    margin-left: 50px
+}
+
+
+body{
+    background-color: #eee;
+}
+
+div.shop_items{
+    display: flex; 
+    justify-content: space-between;
+    margin: 10%;
+    text-align: center
+}
+
+.item{
+    display: flex;
+    margin-left: 10%;
+}
+
+.item1{
+    text-align: center
+    
+}
+
+
+
+

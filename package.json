@@ -1,0 +1,22 @@
+{
+  "name": "rakendusteprogrammeerimine",
+  "version": "1.0.0",
+  "description": "esox webstore",
+  "main": "index.js",
+  "scripts": {
+    "test": "runit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaikPython/RakendusteProgrammeerimine.git"
+  },
+  "author": "Paul Oskar Soe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaikPython/RakendusteProgrammeerimine/issues"
+  },
+  "homepage": "https://github.com/MaikPython/RakendusteProgrammeerimine#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
