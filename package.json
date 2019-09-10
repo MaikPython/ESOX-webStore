@@ -4,6 +4,7 @@
   "description": "esox webstore",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "test": "runit"
   },
   "repository": {
