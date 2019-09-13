@@ -40,15 +40,17 @@ utils.test(sumOfCost(mockItems), 9594);
  * Task 2
  */
 
-// const getPhones = items => {
-//   arr = []
-//   items.map(elem=>{
-//     if(elem.category == 'phone'){
-//       arr.push(elem)
-//     }
-//     return arr
-//   })
-// };
+const getPhones = items => {
+  arr = []
+  items.map(elem=>{
+    if(elem.category == 'phone'){
+      arr.push(elem)
+    }
+    
+  })
+  return arr
+};
+
 
 utils.test(getPhones(mockItems).slice(-1)[0].name, "item19");
 utils.test(getPhones(mockItems).length, 9);
@@ -62,10 +64,23 @@ utils.test(getPhones(mockItems).length, 9);
  * Look tests below for more information
  */
 class User {
-  addToCart = (items) =>{
-    let cart = items
+
+  constructor(){
+    this.cart = []
+  }
+
+  
+
+  addToCart(elem){
+    this.cart.push(elem)
+  }
+
+  getCart(){
+    return this.cart
   }
 }
+
+
 
 const user1 = new User();
 
