@@ -21,26 +21,34 @@ body{
     background-color: #eee;
 }
 
-div.shop_items{
+#shop_items{
+    margin: 5%;
     display: flex; 
-    justify-content: space-between;
-    margin: 10%;
-    text-align: center
-}
+    flex-wrap: wrap;
+    justify-content: space-around
 
-.item{
-    display: flex;
-    margin-left: 10%;
 }
 
 .item1{
-    text-align: center
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 5px;
+    width: 150;
+    height: 250;
+    margin-bottom: 25px;
     
-}
 
-.item_container{
-    margin-left: 4%;
-    margin-top: 4%
 }
+.item1:hover{
+    transition: .5s all;
+    cursor: pointer;
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
+  }
+ 
+ 
+
+
+
+
 
 

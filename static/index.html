@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-
         <link rel="stylesheet" href="style.css">
+        <script src="itemList.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -20,28 +20,16 @@
                 <button class="login" type="button">Logi sisse/Loo kasutaja</button>
             </div>
         </div>
-        <div class="shop_items">
-            <div id="item1">
-                <img src="assets/lant_1.jpg" alt="lant_1" width="128" height="320" class="item">
-                <a href="item.html?title=lant&cost=15&src=assets/lant_1.jpg">Toode1</a><br>
-                <p>Hind: 15€</p>
-            </div>
-            <div id="item1">
-                <img src="assets/lant_2.jpg" alt="lant_2" width="128" height="320" class="item">
-                <a href="item.html?title=lant2&cost=11&src=assets/lant_2.jpg">Toode2</a><br>
-                <p>Hind: 11€</p>
-            </div>
-            
-            <div id="item1">
-            <img src="assets/lant_3.jpg" alt="lant_3" width="128" height="320" class="item">
-            <a href="item.html?title=lant3&cost=12&src=assets/lant_3.jpg">Toode3</a><br>
-            <p>Hind: 12€</p>
-        </div>
+        <select class="category-select">
+            <option value="Käsitöö" selected> Käsitöö</option>
+            <option value="Tehasetöö"> Tehasetöö</option>
+        </select>
+        <div id="shop_items">
         </div>
     </div>
     </body>
     <footer>
 
     </footer>
-    <script src="itemList.js"></script>
+ 
 </html>

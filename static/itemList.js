@@ -1,28 +1,76 @@
 window.addEventListener("load", () =>{
-    console.log("working");
-    createItems()
+  let rightArr1 = handMade
+  createItemList(rightArr1)
+
+  const selectElement = document.querySelector('.category-select')
+  selectElement.addEventListener('change', (event) =>{
+    let arrObj = {
+      handsMade: handMade,
+      industMade: indusMade
+    }
+    let result = ""
+    let rightArr = arrObj.handsMade
+    result = event.target.value
+    if(result == "Tehasetöö"){
+      rightArr = arrObj.industMade
+    }
+    else{
+      rightArr = arrObj.handsMade
+    }
+    createItemList(rightArr)
+})
+  
+
     
 })
 
-const createItems = () => {
-    const root = document.getElementsByClassName("shop_items")
-    handMade.forEach(element => {
-        let img = document.createElement('img')
-        img.src = element.imgSrc
 
-        let title = document.createElement('a')
-        title.textContent = element.title
+  
 
-        let price = document.createElement('p')
-        price.textContent = element.price
-        root.append(img)
+
+
+const createItemList = (result) => {
+  //console.log(result);
+  
+  const root = document.getElementById("shop_items")
+    result.forEach(element => {
+      const elements = createItem(element)
+      
+      root.append(elements)
+
     });
     
 }
 
 
+const createItem = (item) =>{
+  let anchor = document.createElement('a')
+  anchor.href = ""
+  
+  let div1 = document.createElement('div')
+  div1.setAttribute('class', 'item1')
 
-//data
+  let img = document.createElement('img')
+  img.src = item.imgSrc
+  img.setAttribute('class', 'item')
+  //console.log(img);
+  
+  
+
+  let title = document.createElement('a')
+  title.textContent = item.title
+  let price = document.createElement('p')
+  price.textContent = item.price
+
+  title.href = `item.html?title=${item.title}&cost=${item.price}&src=${item.imgSrc}`
+
+  div1.appendChild(img)
+  div1.appendChild(title)
+  div1.appendChild(price)
+  return div1  
+
+}
+
 
 
 const handMade = [
@@ -149,24 +197,125 @@ const handMade = [
         }
       ]
     const indusMade = 
-    [
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…699-2699_56d9935e7b79b4.10924585_152200_large.jpg", title: "SpinTube Disco aeglaselt uppuv 35g hõbe", price: "13,05 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…911-4911_5911cf065cb881.40734820_152250_large.jpg", title: "SpinTube Disco aeglaselt uppuv 35g pärl/lilla", price: "13,05 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…909-4909_5911ccf52f4a78.05209901_152220_large.jpg", title: "SpinTube Disco aeglaselt uppuv 35g roheline/kollane", price: "13,05 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…910-4910_5911cf70c59a37.50891346_152240_large.jpg", title: "SpinTube Disco aeglaselt uppuv 35g sinine", price: "13,05 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…710-2710_56db11a3a875b2.89951213_155080_large.jpg", title: "SpinTube Leech 10 g", price: "4,77 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…712-2712_56dc2c01c17451.30639821_155140_large.jpg", title: "SpinTube Leech 10g oranz", price: "4,77 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…708-2708_56dc2c2aefc450.41849696_155110_large.jpg", title: "SpinTube Leech 10g roheline/must", price: "4,77 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…713-2713_56dc2c60e5caf5.71478400_155150_large.jpg", title: "SpinTube Leech 10g roosa/must", price: "4,77 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…266-3266_57189ce75e9576.06613563_155030_large.jpg", title: "SpinTube Leech 5g fl. yellow", price: "4,77 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…148-3148_571f8f66825f71.15119079_155070_large.jpg", title: "Spintube Leech 5g Kollane/Must", price: "4,77 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…146-3146_571f8f92667818.97551430_155000_large.jpg", title: "Spintube Leech 5g Punane/Must", price: "4,77 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…147-3147_571f8fc6b15461.20072179_155050_large.jpg", title: "Spintube Leech 5g Roosa/Must", price: "4,77 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…149-3149_571f8ff4e528b9.73484047_155080_large.jpg", title: "Spintube Leech 5g Valge/Roosa", price: "4,77 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…709-2709_56db1143193953.49971573_155000_large.jpg", title: "SpinTube Leech fl. red/black 10g ", price: "4,77 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…711-2711_56db125b27b2a6.25582742_155090_large.jpg", title: "SpinTube Leech valge-must 10g", price: "4,77 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…033-4033_58233712aed4c3.31945720_155840_large.jpg", title: "SpinTube Minnow Brass White/Chart 5g", price: "4,77 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…_56da96ceacaaa6.47677188_154720-800x800_large.jpg", title: "SpinTube Natural 10g ", price: "5,49 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…62b7f64e6.82284659_allalaaditud-fail-1-_large.jpg", title: "SpinTube Natural 10g", price: "5,49 € (10%)", category: "Leechid"},
-        {imgSrc: "http://www.kalastus.eu/media/kalastus-eu/.product-…_56da9710aaed47.61243770_154730-800x800_large.jpg", title: "SpinTube Natural 10g", price: "5,49 € (10%)", category: "Leechid"}
-    ]
+  [
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/2699-2699_56d9935e7b79b4.10924585_152200_large.jpg",
+      "title": "SpinTube Disco aeglaselt uppuv 35g hõbe",
+      "price": "13,05 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4911-4911_5911cf065cb881.40734820_152250_large.jpg",
+      "title": "SpinTube Disco aeglaselt uppuv 35g pärl/lilla",
+      "price": "13,05 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4909-4909_5911ccf52f4a78.05209901_152220_large.jpg",
+      "title": "SpinTube Disco aeglaselt uppuv 35g roheline/kollane",
+      "price": "13,05 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4910-4910_5911cf70c59a37.50891346_152240_large.jpg",
+      "title": "SpinTube Disco aeglaselt uppuv 35g sinine",
+      "price": "13,05 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/2710-2710_56db11a3a875b2.89951213_155080_large.jpg",
+      "title": "SpinTube Leech 10 g",
+      "price": "4,77 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/2712-2712_56dc2c01c17451.30639821_155140_large.jpg",
+      "title": "SpinTube Leech 10g oranz",
+      "price": "4,77 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/2708-2708_56dc2c2aefc450.41849696_155110_large.jpg",
+      "title": "SpinTube Leech 10g roheline/must",
+      "price": "4,77 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/2713-2713_56dc2c60e5caf5.71478400_155150_large.jpg",
+      "title": "SpinTube Leech 10g roosa/must",
+      "price": "4,77 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3266-3266_57189ce75e9576.06613563_155030_large.jpg",
+      "title": "SpinTube Leech 5g fl. yellow",
+      "price": "4,77 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3148-3148_571f8f66825f71.15119079_155070_large.jpg",
+      "title": "Spintube Leech 5g Kollane/Must",
+      "price": "4,77 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3146-3146_571f8f92667818.97551430_155000_large.jpg",
+      "title": "Spintube Leech 5g Punane/Must",
+      "price": "4,77 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3147-3147_571f8fc6b15461.20072179_155050_large.jpg",
+      "title": "Spintube Leech 5g Roosa/Must",
+      "price": "4,77 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3149-3149_571f8ff4e528b9.73484047_155080_large.jpg",
+      "title": "Spintube Leech 5g Valge/Roosa",
+      "price": "4,77 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/2709-2709_56db1143193953.49971573_155000_large.jpg",
+      "title": "SpinTube Leech fl. red/black 10g ",
+      "price": "4,77 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/2711-2711_56db125b27b2a6.25582742_155090_large.jpg",
+      "title": "SpinTube Leech valge-must 10g",
+      "price": "4,77 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4033-4033_58233712aed4c3.31945720_155840_large.jpg",
+      "title": "SpinTube Minnow Brass White/Chart 5g",
+      "price": "4,77 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/2705-2705_56da96ceacaaa6.47677188_154720-800x800_large.jpg",
+      "title": "SpinTube Natural 10g ",
+      "price": "5,49 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/2703-2703_56da962b7f64e6.82284659_allalaaditud-fail-1-_large.jpg",
+      "title": "SpinTube Natural 10g",
+      "price": "5,49 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/2706-2706_56da9710aaed47.61243770_154730-800x800_large.jpg",
+      "title": "SpinTube Natural 10g",
+      "price": "5,49 € (10%)",
+      "category": "Leechid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/2707-2707_56da9754823ed3.01874254_154750_large.jpg",
+      "title": "SpinTube Natural 10g kollane",
+      "price": "5,49 € (10%)",
+      "category": "Leechid"
+    }
+  ]

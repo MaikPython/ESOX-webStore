@@ -2,18 +2,21 @@
 
 const showItem = () =>{
     const urlParams = new URLSearchParams(window.location.search)
-
-    const title = urlParams.get("title")
+    console.log(window.location.search);
+    
+    const title = urlParams.get("title")    
     const cost = urlParams.get("cost")
     const pic = urlParams.get("src")
+
+    console.log("title: ", title, "cost: ", cost , "pic:", pic);
 
     const container = document.createElement("div")
     container.className = "item_container";
 
     const itemImage = document.createElement("img")
     itemImage.src = pic
-    itemImage.className = "item__image";
-    itemImage.width = 128
+    itemImage.className = "item_image";
+    itemImage.width = 300
     itemImage.height = 320
 
     const itemTitle = document.createElement('p')
@@ -30,7 +33,6 @@ const showItem = () =>{
     
     document.body.appendChild(container)
 
-    console.log(container)
     
 }
 
