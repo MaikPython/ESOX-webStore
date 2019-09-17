@@ -4,8 +4,9 @@
   "description": "esox webstore",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "start": "node app.js",
-    "test": "runit"
+    "start:dev": "npm run build && npm run start"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,10 @@
   "homepage": "https://github.com/MaikPython/RakendusteProgrammeerimine#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.0.4",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.9"
   }
 }

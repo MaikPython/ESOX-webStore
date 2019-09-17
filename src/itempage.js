@@ -1,6 +1,6 @@
 
 
-const showItem = () =>{
+const setUp = () =>{
     const urlParams = new URLSearchParams(window.location.search)
     console.log(window.location.search);
     
@@ -36,5 +36,6 @@ const showItem = () =>{
     
 }
 
-    
-window.onload = showItem
+module.exports = {
+    setUp,
+}
