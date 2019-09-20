@@ -1,7 +1,7 @@
 
 const createItem = (item) =>{
     let anchor = document.createElement('a')
-    anchor.href = ""
+    anchor.href = `item.html?title=${item.title}&cost=${item.price}&src=${item.imgSrc}`
     
     let div1 = document.createElement('div')
     div1.setAttribute('class', 'item1')
@@ -11,17 +11,19 @@ const createItem = (item) =>{
     img.setAttribute('class', 'item')
     
   
-    let title = document.createElement('a')
+    let title = document.createElement('p')
     title.textContent = item.title
+    title.className = "item_title"
     let price = document.createElement('p')
     price.textContent = item.price
+    price.className = "item_cost"
   
-    title.href = `item.html?title=${item.title}&cost=${item.price}&src=${item.imgSrc}`
   
     div1.appendChild(img)
     div1.appendChild(title)
     div1.appendChild(price)
-    return div1  
+    anchor.append(div1)
+    return anchor  
   }
   module.exports = {
     createItem

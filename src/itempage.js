@@ -16,8 +16,8 @@ const setUp = () =>{
     const itemImage = document.createElement("img")
     itemImage.src = pic
     itemImage.className = "item_image";
-    itemImage.width = 300
-    itemImage.height = 320
+    itemImage.width = 252
+    itemImage.height = 252
 
     const itemTitle = document.createElement('p')
     itemTitle.textContent = title

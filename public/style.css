@@ -25,7 +25,8 @@ body{
     margin: 5%;
     display: flex; 
     flex-wrap: wrap;
-    justify-content: space-around
+    justify-content: space-around;
+    align-items:center
 
 }
 
@@ -33,11 +34,16 @@ body{
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     padding: 5px;
-    width: 150;
-    height: 250;
+    width: 300px;
+    height: 250px;
     margin-bottom: 25px;
+    justify-content: center;
     
 
+}
+
+.item_cost, .item_title{
+    text-align: center
 }
 .item1:hover{
     transition: .5s all;
@@ -46,7 +52,10 @@ body{
   }
  
  
-
+.item{
+  
+ 
+}
 
 
 
