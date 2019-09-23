@@ -1,6 +1,7 @@
+import React from 'react'
 
 const ItemList = (props) => {
-    const items = props.handMade.map(item =>{
+    const items = props.handMade.object.map(item =>{
         return(
         <div class="item1">
             <img src={item.imgSrc} class="item"/>
