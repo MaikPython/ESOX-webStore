@@ -3,11 +3,7 @@ import React from 'react'
 const ItemList = (props) => {
     const items = props.handMade.object.map(item =>{
         return(
-        <div class="item1">
-            <img src={item.imgSrc} class="item"/>
-            <a href="#">{item.title}</a>
-            <p>{item.price}</p>
-        </div>
+            < Item handMade = {item}/>
         )
     })
     return(
@@ -16,6 +12,16 @@ const ItemList = (props) => {
         </div>
     )
 
+}
+
+const Item = (props) => {
+    return(
+    <div class="item1">
+        <img src={props.handMade.imgSrc} class="item"/>
+        <a href="#">{props.handMade.title}</a>
+        <p>{props.handMade.price}</p>
+    </div>
+    )
 }
 
 

@@ -136,7 +136,8 @@ const handMade = {
 
 
   const indusMade = 
-  [
+  {
+    "object":[
   {
   "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/2699-2699_56d9935e7b79b4.10924585_152200_large.jpg",
   "title": "SpinTube Disco aeglaselt uppuv 35g hõbe",
@@ -257,6 +258,8 @@ const handMade = {
   "price": "5,49 € (10%)",
   "category": "Leechid"
   }
-  ]
+]
+}
 
+export {indusMade}
 export {handMade}
