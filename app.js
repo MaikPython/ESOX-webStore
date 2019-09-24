@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const PORT = 3000
+const PORT = process.env.PORT || 3000
 const path = require("path")
 
 app.get('/', (req, res) => {
@@ -9,6 +9,7 @@ app.get('/', (req, res) => {
 
 app.use(express.static('dist'))
 
-app.listen(process.env.PORT || PORT, () => {
+app.listen(PORT, () => {
     console.log("Server started", PORT);
+    console.log(`http://localhost:${PORT}`)
   });
