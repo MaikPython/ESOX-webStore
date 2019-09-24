@@ -1,4 +1,7 @@
 import React from 'react'
+import { Link } from "react-router-dom";
+
+
 
 const ItemList = (props) => {
     const items = props.handMade.object.map(item =>{
@@ -16,11 +19,13 @@ const ItemList = (props) => {
 
 const Item = (props) => {
     return(
-    <div class="item1">
-        <img src={props.handMade.imgSrc} class="item"/>
-        <a href="#">{props.handMade.title}</a>
-        <p>{props.handMade.price}</p>
-    </div>
+    <Link to={"/item"}>
+        <div class="item1">
+            <img src={props.handMade.imgSrc} class="item"/>
+            <h3>{props.handMade.title}</h3>
+            <p>{props.handMade.price}</p>
+        </div>
+    </Link>
     )
 }
 
