@@ -22,7 +22,10 @@ module.exports = {
     historyApiFallback: true,
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 9000
+    port: 9000,
+    proxy:{
+      '/api':'http://localhost:3000'
+    }
   },
   module:{
     rules: [

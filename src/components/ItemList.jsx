@@ -4,9 +4,10 @@ import PropTypes from "prop-types"
 
 
 const ItemList = (props) => {
-    const items = props.handMade.object.map(item =>{
+    console.log(props)
+    const items = props.handMade.map(item =>{
         return(
-            < Item handMade = {item} key={item.title}/>
+            < Item handMade = {item} key={item.id}/>
         )
     })
     return(
