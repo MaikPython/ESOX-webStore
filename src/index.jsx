@@ -1,10 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import React from "react"
+import ReactDOM from "react-dom"
+import { BrowserRouter, Route } from "react-router-dom";
 
 
-import Homepage from './Homepage.jsx'
-import ItemPage from './Itempage.jsx'
+import Homepage from "./Homepage.jsx"
+import ItemPage from "./Itempage.jsx"
 
 
 const node = document.getElementById("app")

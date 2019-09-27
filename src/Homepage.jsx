@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react"
 
-import {handMade} from './../data/Data.jsx'
-import {indusMade} from './../data/Data.jsx'
-import Header from './components/Header.jsx'
-import ItemList from './components/ItemList.jsx'
+import {handMade} from "./../data/Data.jsx"
+import {indusMade} from "./../data/Data.jsx"
+import Header from "./components/Header.jsx"
+import ItemList from "./components/ItemList.jsx"
 
 
 class Homepage extends React.Component{

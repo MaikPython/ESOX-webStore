@@ -1,3 +1,23 @@
+const getItems = () =>{
+    const items = []
+    handMade.object.forEach((item, index)=>{
+        items.push({
+            ...item,
+            id: 'handMade' + index
+        })
+    })
+    indusMade.object.forEach((item, index)=>{
+        items.push({
+            ...item,
+            id: 'indusMade' + index
+        })
+    })
+    return items
+}
+
+const getItem = (id) =>{
+    return getItems().find(item => item.id == id)
+}
 
 
 
@@ -261,5 +281,7 @@ const handMade = {
 ]
 }
 
-export {indusMade}
-export {handMade}
+module.exports = {
+    getItems,
+    getItem
+}

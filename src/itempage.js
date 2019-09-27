@@ -19,11 +19,11 @@ const setUp = () =>{
     itemImage.width = 252
     itemImage.height = 252
 
-    const itemTitle = document.createElement('p')
+    const itemTitle = document.createElement("p")
     itemTitle.textContent = title
     itemTitle.className = "item_title"
 
-    const itemCost = document.createElement('p')
+    const itemCost = document.createElement("p")
     itemCost.textContent = cost
     itemCost.className = "item_cost"
 

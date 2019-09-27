@@ -1,12 +1,12 @@
-import React from 'react'
-import { Link } from "react-router-dom";
-
+import React from "react"
+import { Link } from "react-router-dom"
+import PropTypes from "prop-types"
 
 
 const ItemList = (props) => {
     const items = props.handMade.object.map(item =>{
         return(
-            < Item handMade = {item}/>
+            < Item handMade = {item} key={item.title}/>
         )
     })
     return(
@@ -17,16 +17,27 @@ const ItemList = (props) => {
 
 }
 
+ItemList.propTypes = {
+    handMade: PropTypes.array
+}
+
 const Item = (props) => {
     return(
     <Link to={"/item"}>
-        <div class="item1">
-            <img src={props.handMade.imgSrc} class="item"/>
+        <div className="item1">
+            <img src={props.handMade.imgSrc} className="item"/>
             <h3>{props.handMade.title}</h3>
             <p>{props.handMade.price}</p>
         </div>
     </Link>
     )
+}
+
+Item.propTypes = {
+    handMade: PropTypes.array,
+    imgSrc: PropTypes.string,
+    title: PropTypes.string,
+    price: PropTypes.string,
 }
 
 

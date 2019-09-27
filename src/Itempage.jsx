@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react"
 
-import Header from './components/Header.jsx'
-import {handMade} from './../data/Data.jsx'
+import Header from "./components/Header.jsx"
+import {handMade} from "./../data/Data.jsx"
 
 class Itempage extends React.Component{
     constructor(props){
