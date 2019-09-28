@@ -24,7 +24,7 @@ ItemList.propTypes = {
 
 const Item = (props) => {
     return(
-    <Link to={"/item"}>
+    <Link to={`/items/${props.id}`}>
         <div className="item1">
             <img src={props.handMade.imgSrc} className="item"/>
             <h3>{props.handMade.title}</h3>
@@ -35,10 +35,11 @@ const Item = (props) => {
 }
 
 Item.propTypes = {
-    handMade: PropTypes.array,
-    imgSrc: PropTypes.string,
-    title: PropTypes.string,
-    price: PropTypes.string,
+    
+    id: PropTypes.string.isRequired,
+    imgSrc: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
 }
 
 

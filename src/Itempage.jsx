@@ -6,6 +6,11 @@ import {handMade} from "./../data/Data.jsx"
 class Itempage extends React.Component{
     constructor(props){
         super(props)
+        //this.state
+    }
+
+    componentDidMount = () =>{
+
     }
 
     render(){
