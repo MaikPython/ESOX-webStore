@@ -7,7 +7,7 @@ const ItemList = (props) => {
     console.log(props)
     const items = props.handMade.map(item =>{
         return(
-            < Item handMade = {item} key={item.id}/>
+            < Item handMade = {item} key={item.id} id={item.id}/>
         )
     })
     return(
@@ -35,7 +35,7 @@ const Item = (props) => {
 }
 
 Item.propTypes = {
-    
+    handMade: PropTypes.array.isRequired,
     id: PropTypes.string.isRequired,
     imgSrc: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,

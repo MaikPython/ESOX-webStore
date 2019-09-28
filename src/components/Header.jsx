@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 const Header = () => {
-    const logoPic = "./assets/logo.jpg"
+    const logoPic = "/assets/logo.jpg"
     return(
         <div className="menu">
             <Link to={"/"}>
