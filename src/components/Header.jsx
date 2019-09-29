@@ -6,7 +6,7 @@ const Header = () => {
     const logoPic = "/assets/logo.jpg"
     return(
         <div className="menu">
-            <Link to={"/"}>
+            <Link to={"/items"}>
                 <img src={logoPic} alt="logo" width="100" height="100"/>
             </Link>
             <div className="header-items">

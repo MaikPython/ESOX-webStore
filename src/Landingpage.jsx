@@ -1,6 +1,7 @@
 import React from "react"
 import Header from "./components/Header.jsx"
 import ImageSlides from "./components/ImageSlides.jsx"
+import Footer from './components/Footer.jsx'
 
 class Homepage extends React.Component{
 
@@ -9,6 +10,7 @@ class Homepage extends React.Component{
             <div>
             <Header />
             <ImageSlides />
+            <Footer />
             </div>
         )
     }
