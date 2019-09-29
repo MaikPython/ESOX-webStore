@@ -4,10 +4,9 @@ import PropTypes from "prop-types"
 
 
 const ItemList = (props) => {
-    console.log(props)
-    const items = props.handMade.map(item =>{
+    const items = props.arrayOfItems.map(item =>{
         return(
-            < Item handMade = {item} key={item.id} id={item.id}/>
+            < Item arrayOfItems = {item} key={item.id} id={item.id}/>
         )
     })
     return(
@@ -19,23 +18,23 @@ const ItemList = (props) => {
 }
 
 ItemList.propTypes = {
-    handMade: PropTypes.array
+    arrayOfItems: PropTypes.array
 }
 
 const Item = (props) => {
     return(
     <Link to={`/items/${props.id}`}>
         <div className="item1">
-            <img src={props.handMade.imgSrc} className="item"/>
-            <h3>{props.handMade.title}</h3>
-            <p>{props.handMade.price}</p>
+            <img src={props.arrayOfItems.imgSrc} className="item"/>
+            <h3>{props.arrayOfItems.title}</h3>
+            <p>{props.arrayOfItems.price}</p>
         </div>
     </Link>
     )
 }
 
 Item.propTypes = {
-    handMade: PropTypes.array.isRequired,
+    arrayOfItems: PropTypes.array.isRequired,
     id: PropTypes.string.isRequired,
     imgSrc: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,

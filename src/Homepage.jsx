@@ -1,7 +1,4 @@
 import React from "react"
-
-// import {handMade} from "./../data/Data.jsx"
-// import {indusMade} from "./../data/Data.jsx"
 import Header from "./components/Header.jsx"
 import ItemList from "./components/ItemList.jsx"
 
@@ -11,22 +8,19 @@ class Homepage extends React.Component{
         super(props)
         this.state = {
             items: [],
-            selectedCategory: "Käsitöölandid"
+            selectedCategory: "Roolandid"
         }
     }
 
     componentDidMount(){
-        console.log("mount");
         this.fetchItems()
     }
 
     fetchItems = () => { 
         fetch("http://localhost:9000/api/items")
         .then(res=>{
-            console.log(res, "responded");
             return res.json()
         }).then(items=>{
-            console.log(items, "items")
             this.setState({
                 items
             })
@@ -49,16 +43,14 @@ class Homepage extends React.Component{
     }
     
     render(){
-    console.log(this.state) 
     return(
-
     <div>
         <Header />
         <select onChange={this.handleDropdown.bind(this)}>
-            <option value="Käsitöölandid">Käsitöö</option>
+            <option value="Roolandid">Käsitöö</option>
             <option value="Leechid">Tehasetöö</option>
         </select>
-        <ItemList handMade = {this.getVisibleItems()} />
+        <ItemList arrayOfItems = {this.getVisibleItems()} />
     </div>
   )
 }

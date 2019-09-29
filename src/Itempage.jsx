@@ -1,29 +1,52 @@
 import React from "react"
 
 import Header from "./components/Header.jsx"
-import {handMade} from "./../data/Data.jsx"
+import PropTypes from "prop-types";
+
 
 class Itempage extends React.Component{
+
     constructor(props){
         super(props)
-        //this.state
+        this.state = {}
     }
-
     componentDidMount = () =>{
-
+        this.fetchItem()
+       
     }
+
+    fetchItem = () =>{
+        fetch(`/api/items/${this.props.match.params.itemId}`)
+        .then(res =>{
+            console.log(res, " --> respone")
+            return res.json()
+        })
+        .then(item=>{
+            console.log(item, "is the item")
+            this.setState({
+                ...item
+            })
+        })
+        .catch(req =>{
+            console.log("item page", req)
+        })
+    }
+    
 
     render(){
-        const item = handMade.object[0]
         return(
             <div>
                 <Header />
-                <img src={item.imgSrc}/>
-                <h3>{item.title}</h3>
-                <h3>{item.price}</h3>
+                <img src={this.state.imgSrc}/>
+                <h3>{this.state.title}</h3>
+                <h3>{this.state.price}</h3>
             </div>
         )
     }
+}
+
+Itempage.propTypes = {
+    match: PropTypes.object.isRequired,
 }
 
 export default Itempage
