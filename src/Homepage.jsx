@@ -1,7 +1,7 @@
 import React from "react"
 import Header from "./components/Header.jsx"
 import ItemList from "./components/ItemList.jsx"
-
+import Footer from "./components/Footer.jsx"
 
 class Homepage extends React.Component{
     constructor(props){
@@ -51,6 +51,7 @@ class Homepage extends React.Component{
             <option value="Leechid">Tehasetöö</option>
         </select>
         <ItemList arrayOfItems = {this.getVisibleItems()} />
+        <Footer />
     </div>
   )
 }

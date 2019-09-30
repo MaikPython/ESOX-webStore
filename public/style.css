@@ -1,3 +1,5 @@
+/* HEADER */
+
 .menu{   
     display: flex;
     background-color: white;
@@ -17,14 +19,19 @@
     margin-left: 50px
 }
 
+/* BODY */
 
-body, html{
+body, html, #app{
     height: 100%;
     margin: 0px;
     padding: 0px;
     background: #f6f6f6;
     font-family: 'Lora', 'serif';
+    display: flex;
+    flex-direction: column;
 }
+
+/* SHOP ITEMS  */
 
 #shop_items{
     margin: 5%;
@@ -56,54 +63,22 @@ body, html{
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
   }
  
+/* IMAGE SLIDES */
+.responsive{
+    min-height: 100%;
+}
 
-  .slider-frame{
-    display: flex;
-    overflow: hidden;
-    height: 600;
-    width: 100%;
-  }
+
+
+/* FOOTER */
+
   
-  @-webkit-keyframes slide_animation{
-    0% {left:0px;}
-    10% {left:0px;}
-    20% {left:1247px;}
-    30% {left:1247px;}
-    40% {left: 2494px;}
-    50% {left: 2494px;}
-    60% {left: 1247px;}
-    70% {left: 1247px;}
-    80% {left: 0px;}
-    90% {left: 0px}
-    100% {left: 0px}
-  }
-  
-  
-  .slide-image{
-    width: 3741px;
-    height:600px;
-    margin: 0 0 0 -2494px;
-    position: relative;
-    -webkit-animation-name: slide_animation;
-    -webkit-animation-duration: 66s;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-play-state: running;
-  }
-  
-  .img-container{
-  height: 549px;
-  width: 1247px;
-  position: relative;
-  float: left;
-  }
-  
-.footer{
+.footer {
     background: #303036;
     color: #d3d3d3;
-    height: 250px;
-    vertical-align: bottom;
-    bottom: 0;
     width: 100%;
+    position: relative;
+    margin-top: auto;
 }
 
 .footer .footer-content {
@@ -122,13 +97,13 @@ body, html{
     display: block;
     font-size: 1.1 em;
     margin-bottom: 8px;
-    padding: 20px;
+    padding: 2%;
 }
 
 
 .footer .footer-content .about .socials {
     display: block;
-    font-size: 1.1 em;
+    font-size: 1%;
     margin-top: 15px;
 }
 
@@ -143,7 +118,7 @@ body, html{
 }
 
 .footer .footer-content .contact-form .text-input{
-    width:300px;
+    width: 95%;
     height: 30px;
 }
 
@@ -157,13 +132,11 @@ body, html{
     margin-bottom: 10px
  }
 
- .slider-frame{
-     min-height: 100%;
- }
  
 
-.footer .footer-content .contact-form form{
+.footer .footer-content .contact-form {
     display: inline-block;
+    margin-left: 5%
 }
 
 
