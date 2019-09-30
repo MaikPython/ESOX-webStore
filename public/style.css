@@ -5,7 +5,8 @@
     background-color: white;
     align-items: center;
     justify-content: space-between;
-    width: 100%
+    width: 100%;
+    position: relative;
 }
 
 .header-items{
@@ -64,11 +65,70 @@ body, html, #app{
   }
  
 /* IMAGE SLIDES */
-.responsive{
-    min-height: 100%;
+
+.slider{
+    overflow: hidden;
+    
+
+}
+.slider figure{
+    position: relative;
+    width: 300%;
+    margin: 0;
+    left: 0;
+    animation: 20s slider infinite;
 }
 
+.slider figure img {
+    width: 33.33%;
+    float: left;    
+}
 
+.slider .landing-btn{
+    position: absolute;
+    top: 75%;
+    left: 0%;
+    background-color:#555;
+    color: white;
+    font-size: 27px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    opacity: 0.5;
+    width: 100%;
+    height: 20%;
+}
+
+.slider .landing-btn:hover{
+    opacity: 0.7;
+}
+
+@keyframes slider{
+    0%{
+        left: 0;
+    }
+    20%{
+        left: 0%;
+    }
+    25%{
+        left: -100%;
+    }
+    45%{
+        left: -100%;
+    }
+
+    50%{
+        left: -200%;
+    }
+    70%{
+        left: -200%;
+    }
+    90%{
+        left: -100%;
+    }
+    
+}
 
 /* FOOTER */
 
@@ -111,7 +171,9 @@ body, html, #app{
 .footer .footer-content .about a {
     color: gray;
     padding: 10px 10px 10px 0px;
+    
 }
+
 
 .footer .footer-content .about a:hover {
     color: white;
