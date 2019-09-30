@@ -38,9 +38,11 @@ class Itempage extends React.Component{
         return(
             <div>
                 <Header />
-                <img src={this.state.imgSrc}/>
-                <h3>{this.state.title}</h3>
-                <h3>{this.state.price}</h3>
+                <div className="itemPage-item">
+                    <img src={this.state.imgSrc}/>
+                    <h3>{this.state.title}</h3>
+                    <h3>{this.state.price}</h3>
+                </div>
                 <Footer />
             </div>
         )
