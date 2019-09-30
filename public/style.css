@@ -120,7 +120,7 @@ body, html, #app{
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    opacity: 0.5;
+    opacity: 0.4;
     width: 100%;
     height: 20%;
 }
