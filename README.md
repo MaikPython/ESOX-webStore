@@ -9,6 +9,6 @@ Starts the server script for objects
 
 ### `npm run start:dev`
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:9000](http://localhost:3000) to view it in the browser.
 Runs the whole webstore and you can start using
  
