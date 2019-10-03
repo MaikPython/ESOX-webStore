@@ -17,7 +17,7 @@ class Homepage extends React.Component{
     }
 
     fetchItems = () => { 
-        fetch("http://localhost:9000/api/items")
+        fetch("/api/items")
         .then(res=>{
             return res.json()
         }).then(items=>{
