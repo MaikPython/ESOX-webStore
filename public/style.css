@@ -1,8 +1,14 @@
+/* HEADER */
+
 .menu{   
     display: flex;
     background-color: white;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
+    position: relative;
+    font-family: 'Lora', 'serif';
+
 }
 
 .header-items{
@@ -16,10 +22,19 @@
     margin-left: 50px
 }
 
+/* BODY */
 
-body{
-    background-color: #eee;
+body, html, #app{
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background: #f6f6f6;
+    font-family: 'Lora', 'serif';
+    display: flex;
+    flex-direction: column;
 }
+
+/* SHOP ITEMS  */
 
 #shop_items{
     margin: 5%;
@@ -35,9 +50,10 @@ body{
     border-radius: 5px;
     padding: 5px;
     width: 300px;
-    height: 250px;
+    height: 300px;
     margin-bottom: 25px;
     justify-content: center;
+    
     
 
 }
@@ -50,14 +66,170 @@ body{
     cursor: pointer;
     box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.4);
   }
+
+.itemPage-item{
+    box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 5px;
+    width: 50%;
+    height: 40%;
+    justify-content: center;
+    margin-top: 5%;
+    align-items:center;
+    margin-left: 20%;
+    margin-bottom: 10%;
  
- 
-.item{
-  
- 
+
+}
+
+.itemPage-item img, h3{
+    justify-items: center;
+    align-items:center
+
 }
 
 
+/* IMAGE SLIDES */
+
+.slider{
+    overflow: hidden;
+    
+
+}
+.slider figure{
+    position: relative;
+    width: 300%;
+    margin: 0;
+    left: 0;
+    animation: 20s slider infinite;
+}
+
+.slider figure img {
+    width: 33.33%;
+    float: left;    
+}
+
+.slider .landing-btn{
+    position: absolute;
+    top: 75%;
+    left: 0%;
+    background-color:#555;
+    color: white;
+    font-size: 27px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    opacity: 0.4;
+    width: 100%;
+    height: 20%;
+}
+
+.slider .landing-btn:hover{
+    opacity: 0.7;
+}
+
+@keyframes slider{
+    0%{
+        left: 0;
+    }
+    20%{
+        left: 0%;
+    }
+    25%{
+        left: -100%;
+    }
+    45%{
+        left: -100%;
+    }
+
+    50%{
+        left: -200%;
+    }
+    70%{
+        left: -200%;
+    }
+    90%{
+        left: -100%;
+    }
+    
+}
+
+/* FOOTER */
+
+  
+.footer {
+    background: #303036;
+    color: #d3d3d3;
+    width: 100%;
+    position: relative;
+    margin-top: auto;
+}
+
+.footer .footer-content {
+    display: flex;
+    margin-left: 2%;
+    padding: 14px;
+}
+
+.footer .footer-content h1,
+.footer .footer-content h1 {
+    color: white;
+
+}
+
+.footer .footer-content .about .contact .span{
+    display: block;
+    font-size: 1.1 em;
+    margin-bottom: 8px;
+    padding: 2%;
+}
+
+
+.footer .footer-content .about .socials {
+    display: block;
+    font-size: 1%;
+    margin-top: 15px;
+}
+
+
+.footer .footer-content .about a {
+    color: gray;
+    padding: 10px 10px 10px 0px;
+    
+}
+
+
+.footer .footer-content .about a:hover {
+    color: white;
+}
+
+.footer .footer-content .contact-form .text-input{
+    width: 95%;
+    height: 30px;
+}
+
+
+.footer .footer-content .contact-form input.text-input{
+    margin-bottom: 10px
+}
+
+
+.footer .footer-content .contact-form textarea.text-input{
+    margin-bottom: 10px
+ }
+
+ 
+
+.footer .footer-content .contact-form {
+    display: inline-block;
+    margin-left: 5%
+}
+
+
+.footer .footer-content .footer-section{
+    flex:1;
+}
 
 
 

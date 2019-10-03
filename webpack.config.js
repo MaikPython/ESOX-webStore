@@ -18,14 +18,17 @@ module.exports = {
     }
     ])
   ],
-  devServer: {
-    historyApiFallback: true,
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 9000
-  },
   module:{
     rules: [
+      {
+        enforce: 'pre',
+        test: /\.js|jsx$/,        
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        options: {
+          failOnError: true,
+        }
+      },
       {
         test: /\.js|jsx$/,
         exclude: /node_modules/,
@@ -34,5 +37,14 @@ module.exports = {
         }
       }
     ]
+  },
+  devServer: {
+    historyApiFallback: true,
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000,
+    proxy: {
+      '/api': 'http://localhost:3000'
+    }
   }
 };
