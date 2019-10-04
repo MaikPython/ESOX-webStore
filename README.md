@@ -2,7 +2,7 @@
 
 In the project directory, you can run:
 
-## `http://esox.herokuapp.com`
+## http://esox.herokuapp.com
 
 ### `npm start`
 
