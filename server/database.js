@@ -3,13 +3,17 @@ const getItems = () =>{
     handMade.forEach((item, index)=>{
         items.push({
             ...item,
-            id: 'handMade' + index
+            id: 'handMade' + index,
+            price: cleanPrice(item),
         })
     })
+
     indusMade.forEach((item, index)=>{
         items.push({
             ...item,
-            id: 'indusMade' + index
+            id: 'indusMade' + index,
+           price: cleanPrice(item)
+
         })
     })
     return items
@@ -17,6 +21,14 @@ const getItems = () =>{
 
 const getItem = (id) =>{
     return getItems().find(item => item.id == id)
+}
+
+
+const cleanPrice = (item) =>{
+  let price = item.price
+  price = price.split(' €', 1)
+  price = parseFloat(price)
+  return price
 }
 
 

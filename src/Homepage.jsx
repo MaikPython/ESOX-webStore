@@ -3,7 +3,7 @@ import Header from "./components/Header.jsx"
 import ItemList from "./components/ItemList.jsx"
 import Footer from "./components/Footer.jsx"
 import Checkbox from './components/Checkbox.jsx'
-
+import Dropdown from './components/Dropdown.jsx'
 
 
 class Homepage extends React.Component{
@@ -39,13 +39,6 @@ class Homepage extends React.Component{
         })
     }
 
-    handleDropdown(){
-       this.setState({
-           selectedCategory: event.target.value
-       }
-       )
-    }
-
     getVisibleItems = () =>{
         return this.state.items.filter( item => item.category === this.state.selectedCategories[0] || this.state.selectedCategories[1] ) || this.state.items 
     }
@@ -74,8 +67,8 @@ class Homepage extends React.Component{
     return(
     <div>
         <Header />
-
         <Checkbox handleCheckBox = {this.handleCheckBox}/>
+        <Dropdown />
         <ItemList arrayOfItems = {this.getVisibleItems()} />
         <Footer />
     </div>
