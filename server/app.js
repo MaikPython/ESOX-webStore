@@ -1,18 +1,14 @@
-
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 3000
 const path = require("path")
-const DB = require("./database.js")
+const userRouter = require('./user.js')
+const mongoose = require('mongoose');
+require('dotenv').config()
+const DBurl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}${process.env.DB_HOST}`
 
-app.get('/api/items', (req, res)=>{
-  res.json(DB.getItems())
-})
 
-app.get("/api/items/:itemId", (req, res)=>{
-res.send(DB.getItem(req.params.itemId)) 
-})
-
+app.use(userRouter)
 
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, "../dist", "index.html" ))
@@ -24,10 +20,23 @@ app.get('/items/*', (req, res) => {
 
 app.use("/", express.static('dist'))
 
-app.listen(PORT, () => {
+function listen(){
+  app.listen(PORT, () => {
     console.log("Server started", PORT);
     console.log(`http://localhost:${PORT}`)
-  });
-  
+  })
+}
+
+
+
+mongoose.connect(DBurl)
+  .then(()=>{
+    console.log("database is connected")
+    listen()
+  })
+  .catch(( err )=>{
+    console.log(err, "  is the error")
+  })
+
 
 
