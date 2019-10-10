@@ -3,7 +3,7 @@ import Header from "./components/Header.jsx"
 import ItemList from "./components/ItemList.jsx"
 import Footer from "./components/Footer.jsx"
 import Checkbox from './components/Checkbox.jsx'
-import Dropdown from './components/Dropdown.jsx'
+import SortDropdown from './components/SortDropdown.jsx'
 
 
 class Homepage extends React.Component{
@@ -14,11 +14,9 @@ class Homepage extends React.Component{
             items: [],
             allCategories: ["Roolandid", "Leechid"],
             selectedCategories:[],
-            selectedCategory: "Leechid"
-        }
-        
+            sortDirection: 1
+        }     
     }
-
 
     componentDidMount(){
         this.fetchItems()
@@ -34,45 +32,59 @@ class Homepage extends React.Component{
             })
         })
         .catch(err=>{   
-            console.log(err, "error");
-            
+            console.log(err, "error");        
         })
     }
 
     getVisibleItems = () =>{
-        return this.state.items.filter( item => item.category === this.state.selectedCategories[0] || this.state.selectedCategories[1] ) || this.state.items 
+        return this.state.items
+        .filter( item => item.category === this.state.selectedCategories[0] || this.state.selectedCategories[1])
+        .sort((a,b) =>{
+            switch(this.state.sortDirection){
+                case -1: return b.price - a.price
+                case 1: return a.price - b.price
+            }
+        })
+
     }
 
     handleCheckBox(){
         let isChecked = event.target.checked
-
         if(isChecked){
             this.setState({
                 selectedCategories: this.state.selectedCategories.concat(event.target.value),
-                selectedCategory: event.target.value
             })
         }
-
         if(!isChecked){
             this.setState({
                 selectedCategories: this.state.selectedCategories.filter(e => e !== event.target.value),
-                selectedCategory: event.target.value
             })
         }
     }
-    
-    render(){
-    console.log(this.state.selectedCategories, 'are the selectedcategories')
 
+    handleSortDropdown = (event) =>{
+        console.log(event.target.value)
+        this.setState({
+            sortDirection: parseInt(event.target.value)
+        })
+    }
+
+
+   
+    render(){
     return(
     <div>
         <Header />
         <Checkbox handleCheckBox = {this.handleCheckBox}/>
-        <Dropdown />
+        <SortDropdown 
+        direction = {this.state.sortDirection}
+        onChange = {this.handleSortDropdown}
+        />
         <ItemList arrayOfItems = {this.getVisibleItems()} />
         <Footer />
     </div>
   )
 }
 }
+
 export default Homepage
