@@ -29,7 +29,7 @@ function listen(){
 
 
 
-mongoose.connect(DBurl)
+mongoose.connect(DBurl, {useNewUrlParser:true, useUnifiedTopology: true})
   .then(()=>{
     console.log("database is connected")
     listen()
