@@ -2,13 +2,13 @@ const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 3000
 const path = require("path")
-const userRouter = require('./user.js')
+const itemRouter = require('./item.js')
 const mongoose = require('mongoose');
 require('dotenv').config()
 const DBurl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}${process.env.DB_HOST}`
 
 
-app.use(userRouter)
+app.use(itemRouter)
 
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, "../dist", "index.html" ))
@@ -29,7 +29,7 @@ function listen(){
 
 
 
-mongoose.connect(DBurl, {useNewUrlParser:true, useUnifiedTopology: true})
+mongoose.connect(DBurl)
   .then(()=>{
     console.log("database is connected")
     listen()
