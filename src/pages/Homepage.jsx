@@ -1,9 +1,9 @@
 import React from "react"
-import Header from "./components/Header.jsx"
-import ItemList from "./components/ItemList.jsx"
-import Footer from "./components/Footer.jsx"
-import Checkbox from './components/Checkbox.jsx'
-import SortDropdown from './components/SortDropdown.jsx'
+import Header from "./../components/Header.jsx"
+import ItemList from "./../components/ItemList.jsx"
+import Footer from "./../components/Footer.jsx"
+import Checkbox from './../components/Checkbox.jsx'
+import SortDropdown from './../components/SortDropdown.jsx'
 
 
 class Homepage extends React.Component{

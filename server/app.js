@@ -2,9 +2,11 @@ const express = require('express')
 const app = express()
 const PORT = process.env.PORT || 3000
 const path = require("path")
-const itemRouter = require('./item.js')
+const itemRouter = require('./item.router.js')
 const mongoose = require('mongoose');
 require('dotenv').config()
+const DB = require("./database.js")
+const Item = require('./item.model.js')
 const DBurl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}${process.env.DB_HOST}`
 
 
@@ -32,6 +34,7 @@ function listen(){
 mongoose.connect(DBurl)
   .then(()=>{
     console.log("database is connected")
+    migrate()
     listen()
   })
   .catch(( err )=>{
@@ -40,3 +43,39 @@ mongoose.connect(DBurl)
 
 
 
+  
+function migrate(){
+    Item.count({}, (err, count)=>{
+    if(err) throw err
+    if(count > 0){ 
+      console.log("Already had items, don't save! ")
+      return 
+    }
+    saveAllItems()
+  })
+  
+}
+
+function deleteAllItems(){
+  Item.deleteMany({}, (err, doc) =>{
+    console.log("err", err, doc ,"doc");
+    
+  })
+}
+
+
+function saveAllItems(){
+  console.log("migrate started")
+  const items = DB.getItems()
+  items.forEach(item => {
+    const document = new Item(item)
+    document.save((err) =>{
+      if(err){
+        console.log(err)
+        throw new Error("Some thing happened during save!")
+      }
+      console.log("Save success") 
+    })
+  })
+  console.log("items ->", items);
+}

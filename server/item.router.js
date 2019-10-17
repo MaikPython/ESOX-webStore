@@ -1,23 +1,7 @@
 const express = require('express')
 const router = express.Router()
-//const DB = require("./database.js")
 const mongoose = require('mongoose')
-
-// "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4722-4722_58fe4f290965f0.92666540_rms10bsf_large.jpg",
-// "title": "Rapala Minnow Spoon 10cm BSF 32g",
-// "price": "7,11 € (10%)",
-// "category": "Roolandid"
-
-const itemSchema = new mongoose.Schema({
-    imgSrc:     { type: String, required: true }, 
-    title:      { type: String, required: true }, 
-    price:      { type: Number, required: true }, 
-    category:   { type: String, required: true },
-    createdAt:  { type: Date, default: Date.now }
-})
-
-const Item = mongoose.model('Item', itemSchema)
-
+const Item = require('./item.model')
 
 router.delete("/api/items/:itemId", (req, res)=>{
     Item.deleteOne({"_id" : mongoose.Types.ObjectId(req.params.itemId)}, (err)=>{
@@ -39,7 +23,7 @@ router.post('/api/items', (req, res) => {
     const item1 = new Item(props)
     item1.save( err => {
         if(err){
-            console.log("error", error)
+            console.log("error", err)
             res.send
             return
         }
