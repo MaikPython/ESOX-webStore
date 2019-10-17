@@ -1,5 +1,4 @@
 import React from "react"
-import Header from "./../components/Header.jsx"
 import ItemList from "./../components/ItemList.jsx"
 import Footer from "./../components/Footer.jsx"
 import Checkbox from './../components/Checkbox.jsx'
@@ -74,7 +73,6 @@ class Homepage extends React.Component{
     render(){
     return(
     <div>
-        <Header />
         <Checkbox handleCheckBox = {this.handleCheckBox}/>
         <SortDropdown 
         direction = {this.state.sortDirection}

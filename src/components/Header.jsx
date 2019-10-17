@@ -11,7 +11,9 @@ const Header = () => {
                 <img src={logoPic} alt="logo" width="100" height="100"/>
             </Link>
             <div className="header-items">
-                <img className="profile-icon"src={profileIcon} width="50" height="50"/>
+                <Link to={"/login"}>
+                    <img className="profile-icon"src={profileIcon} width="50" height="50"/>
+                </Link>
                 <img className="cart-icon" src={cartIcon} width="50" height="50"/>
             </div>
         </div>

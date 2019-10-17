@@ -1,6 +1,5 @@
 import React from "react"
 
-import Header from "../components/Header.jsx"
 import Footer from "../components/Footer.jsx"
 import PropTypes from "prop-types";
 
@@ -37,7 +36,6 @@ class Itempage extends React.Component{
     render(){
         return(
             <div>
-                <Header />
                 <div className="itemPage-item">
                     <img src={this.state.imgSrc}/>
                     <h3>{this.state.title}</h3>

@@ -3,14 +3,19 @@ const app = express()
 const PORT = process.env.PORT || 3000
 const path = require("path")
 const itemRouter = require('./item.router.js')
+const userRouter = require("./user.router.js")
 const mongoose = require('mongoose');
 require('dotenv').config()
 const DB = require("./database.js")
 const Item = require('./item.model.js')
+const bodyParser = require("body-parser")
+
 const DBurl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}${process.env.DB_HOST}`
 
+app.use(bodyParser.json())
 
 app.use(itemRouter)
+app.use(userRouter)
 
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, "../dist", "index.html" ))
