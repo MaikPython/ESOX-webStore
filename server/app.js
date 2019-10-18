@@ -10,7 +10,7 @@ const DB = require("./database.js")
 const Item = require('./item.model.js')
 const bodyParser = require("body-parser")
 
-DBurl = ""
+DBurl = ''
 
 if(process.env.NODE_ENV !== "production"){
   require('dotenv').config()
@@ -24,19 +24,6 @@ app.use(bodyParser.json())
 app.use(itemRouter)
 app.use(userRouter)
 
-
-
-
-// app.get('/login', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "../dist", "index.html" ))
-// })
-
-
-
-// app.get('/signup', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "../dist", "index.html" ))
-
-// })
 
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, "../dist", "index.html" ))
