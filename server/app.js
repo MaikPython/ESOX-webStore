@@ -5,18 +5,17 @@ const path = require("path")
 const itemRouter = require('./item.router.js')
 const userRouter = require("./user.router.js")
 const mongoose = require('mongoose');
-require('dotenv').config()
+//require('dotenv').config()
 const DB = require("./database.js")
 const Item = require('./item.model.js')
 const bodyParser = require("body-parser")
 
-DBurl = ''
 
 if(process.env.NODE_ENV !== "production"){
   require('dotenv').config()
-  DBurl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}${process.env.DB_HOST}`
 }
 
+DBurl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}${process.env.DB_HOST}`
 
 
 app.use(bodyParser.json())
