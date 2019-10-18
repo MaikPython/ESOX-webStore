@@ -10,12 +10,33 @@ const DB = require("./database.js")
 const Item = require('./item.model.js')
 const bodyParser = require("body-parser")
 
-const DBurl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}${process.env.DB_HOST}`
+DBurl = ""
+
+if(process.env.NODE_ENV !== "production"){
+  require('dotenv').config()
+  DBurl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}${process.env.DB_HOST}`
+}
+
+
 
 app.use(bodyParser.json())
 
 app.use(itemRouter)
 app.use(userRouter)
+
+
+
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../dist", "index.html" ))
+})
+
+
+
+app.get('/signup', (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../dist", "index.html" ))
+
+})
 
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, "../dist", "index.html" ))
