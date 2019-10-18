@@ -27,16 +27,16 @@ app.use(userRouter)
 
 
 
-app.get('/login', (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../dist", "index.html" ))
-})
+// app.get('/login', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "../dist", "index.html" ))
+// })
 
 
 
-app.get('/signup', (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../dist", "index.html" ))
+// app.get('/signup', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "../dist", "index.html" ))
 
-})
+// })
 
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, "../dist", "index.html" ))
