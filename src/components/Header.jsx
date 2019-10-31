@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 const Header = ({user, token, onLogout}) => {
 
    
-    console.log(token, 'is the token')
+    console.log(token, 'is the ')
     console.log(user, 'is the user')
     const logoPic = "/assets/logo.jpg"
     return(
