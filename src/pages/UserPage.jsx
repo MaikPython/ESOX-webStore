@@ -8,8 +8,6 @@ class UserPage extends Component {
             <div>
                 <div>Email       : {this.props.user.email}</div>
                 <div>Created at  : {this.props.user.createdAt}</div>
-
-                
             </div>
         );
     }
@@ -17,7 +15,7 @@ class UserPage extends Component {
 
 
 UserPage.propTypes = {
-    user : PropTypes.object.isRequired
+    user    : PropTypes.object.isRequired,
 }
 
 

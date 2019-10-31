@@ -4,7 +4,10 @@ import { profileIcon, cartIcon } from './../icons.js'
 import './header.css'
 import PropTypes from 'prop-types'
 
-const Header = ({user, token}) => {
+
+const Header = ({user, token, onLogout}) => {
+
+   
     console.log(token, 'is the token')
     console.log(user, 'is the user')
     const logoPic = "/assets/logo.jpg"
@@ -14,7 +17,7 @@ const Header = ({user, token}) => {
                 <img src={logoPic} alt="logo" width="100" height="100"/>
             </Link>
            { !user.email && <LoginRegisterIcon /> }
-           {  user.email && <UserWelcomeIcon user = {user}/>   }
+           {  user.email && <UserWelcomeIcon user = {user} onLogout={onLogout}/>   }
             
         </div>
     )
@@ -22,8 +25,10 @@ const Header = ({user, token}) => {
 
 
 Header.propTypes = {
-    token: PropTypes.string,
-    user : PropTypes.object,
+    token    : PropTypes.string,
+    user     :  PropTypes.object,
+    onLogout : PropTypes.func.isRequired
+
 }
 
 const LoginRegisterIcon = () =>{
@@ -37,12 +42,16 @@ const LoginRegisterIcon = () =>{
     )
 }
 
-const UserWelcomeIcon = ({user}) => {
+const UserWelcomeIcon = ({user, onLogout}) => {
+
     return(
         <div className="header-items">
              <Link to={`/users/${user._id}`}>
                 <img className="profile-icon" src={profileIcon} width="50" height="50"/>
                 <div>{user.email}</div>
+            </Link>
+            <Link to={"/items"}>
+                <button className="log-out" onClick={()=> onLogout()}>Logi välja</button>
             </Link>
         </div>
     )
@@ -50,8 +59,10 @@ const UserWelcomeIcon = ({user}) => {
 
 
 UserWelcomeIcon.propTypes = {
-    token: PropTypes.string,
-    user : PropTypes.object.isRequired
+    token   : PropTypes.string,
+    user    : PropTypes.object.isRequired,
+    onLogout : PropTypes.func.isRequired
+
 }
 
 export default Header

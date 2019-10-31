@@ -25,6 +25,7 @@ class LoginPage extends Component {
          .then(({token, user}) => {
              console.log(token, user)
              this.props.onLogin({token, user})
+             this.props.handleCookie(token)
              this.props.history.push(`/users/${user._id}`)
          })
          .catch(err =>{
@@ -64,8 +65,9 @@ class LoginPage extends Component {
 }
 
 LoginPage.propTypes = {
-    history: PropTypes.object.isRequired,
-    onLogin: PropTypes.func.isRequired
+    history         : PropTypes.object.isRequired,
+    onLogin         : PropTypes.func.isRequired,
+    handleCookie    : PropTypes.func.isRequired
 }
 
 export default LoginPage;
