@@ -5,7 +5,12 @@ const jwt  = require('jsonwebtoken')
 exports.login = (req, res) => { 
     User.login(req.body)
     .then( user => {
-        jwt.sign(user, process.env.PRIVATE_KEY, (err, token) => {
+        console.log(user)
+        jwt.sign(user, process.env.JWT_PRIVATE_KEY, (err, token) => {
+            if(err){
+                console.log(err)
+                return res.status(500)
+            }
             res.status(200).send({
                 user,
                 token

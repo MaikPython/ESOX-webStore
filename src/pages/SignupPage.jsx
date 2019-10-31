@@ -12,7 +12,7 @@ class SignupPage extends Component {
      handleSubmit = (event) => {
          event.preventDefault(),
          console.log("submit", this.state);
-         fetch("/api/users/signup", {
+         fetch("/api/v1/auth/signup", {
              method: "POST",
              headers: {
                  "Content-Type" : "application/json"

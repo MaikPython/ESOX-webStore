@@ -30,6 +30,7 @@ userSchema.statics.login = function({email, password}){
             if(err) return reject(err)
             bcrypt.compare(password, userDoc.hash, function(err, res){
                 if(err) return reject(err)
+                if(!res) return reject("Invalid password")
                 resolve(
                     {
                         email       : userDoc.email,

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import "./form.css"
 import {Link} from "react-router-dom"
+import PropTypes from "prop-types";
+
 class LoginPage extends Component {
     constructor(props){
         super(props)
@@ -12,15 +14,18 @@ class LoginPage extends Component {
      handleSubmit = (event) => {
          event.preventDefault(),
          console.log("submit", this.state);
-         fetch("/api/users/login", {
+         fetch("/api/v1/auth/login", {
              method: "POST",
              headers: {
                  "Content-Type" : "application/json"
              },
              body: JSON.stringify(this.state),
          })
-         .then(res => {
-             console.log("response", res)
+         .then(res => res.json())
+         .then(({token, user}) => {
+             console.log(token, user)
+             this.props.onLogin({token, user})
+             this.props.history.push(`/users/${user._id}`)
          })
          .catch(err =>{
              console.log("error", err)
@@ -56,6 +61,11 @@ class LoginPage extends Component {
             </div>
         );
     }
+}
+
+LoginPage.propTypes = {
+    history: PropTypes.object.isRequired,
+    onLogin: PropTypes.func.isRequired
 }
 
 export default LoginPage;
