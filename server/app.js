@@ -11,7 +11,7 @@ const bodyParser =  require("body-parser")
 const authRouter =  require('./auth.router')
 
 //Check for deploying into heroku
-if(process.env.NODE_ENV === "production"){
+if(process.env.NODE_ENV !== "production"){
   require('dotenv').config()
 }
 
