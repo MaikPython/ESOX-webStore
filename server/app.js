@@ -58,7 +58,7 @@ function listen(){
 
 mongoose.connect(DBurl)
   .then(()=>{
-    console.log("database is connected")
+    console.log("database is connected!")
     migrate()
     listen()
   })
