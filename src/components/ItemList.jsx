@@ -6,7 +6,11 @@ import PropTypes from "prop-types"
 const ItemList = (props) => {
     const items = props.arrayOfItems.map(item =>{
         return(
-            < Item arrayOfItems = {item} key={item.id} id={item.id}/>
+            < Item 
+            arrayOfItems = {item} 
+            key={item._id} 
+            id={item._id}
+            />
         )
     })
     return(
@@ -38,7 +42,7 @@ Item.propTypes = {
     id: PropTypes.string.isRequired,
     imgSrc: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
 }
 
 

@@ -1,7 +1,6 @@
 import React from "react"
 
-import Header from "./components/Header.jsx"
-import Footer from "./components/Footer.jsx"
+import Footer from "../components/Footer.jsx"
 import PropTypes from "prop-types";
 
 
@@ -17,7 +16,7 @@ class Itempage extends React.Component{
     }
 
     fetchItem = () =>{
-        fetch(`/api/items/${this.props.match.params.itemId}`)
+        fetch(`/api/v1/items/${this.props.match.params.itemId}`)
         .then(res =>{
             console.log(res, " --> respone")
             return res.json()
@@ -37,7 +36,6 @@ class Itempage extends React.Component{
     render(){
         return(
             <div>
-                <Header />
                 <div className="itemPage-item">
                     <img src={this.state.imgSrc}/>
                     <h3>{this.state.title}</h3>

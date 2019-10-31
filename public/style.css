@@ -163,7 +163,7 @@ body, html, #app{
     color: #d3d3d3;
     width: 100%;
     position: relative;
-    margin-top: auto;
+    margin-top: 15%;
 }
 
 .footer .footer-content {

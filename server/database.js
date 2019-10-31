@@ -3,13 +3,17 @@ const getItems = () =>{
     handMade.forEach((item, index)=>{
         items.push({
             ...item,
-            id: 'handMade' + index
+            id: 'handMade' + index,
+            price: cleanPrice(item),
         })
     })
+
     indusMade.forEach((item, index)=>{
         items.push({
             ...item,
-            id: 'indusMade' + index
+            id: 'indusMade' + index,
+           price: cleanPrice(item)
+
         })
     })
     return items
@@ -20,130 +24,139 @@ const getItem = (id) =>{
 }
 
 
+const cleanPrice = (item) =>{
+  let price = item.price
+  price = price.split(' €', 1)
+  price = parseFloat(price)
+  return price
+}
 
-const handMade = [
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4722-4722_58fe4f290965f0.92666540_rms10bsf_large.jpg",
-              "title": "Rapala Minnow Spoon 10cm BSF 32g",
-              "price": "7,11 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4723-4723_58fe4fa293b911.56912470_rms10bsh_large.jpg",
-              "title": "Rapala Minnow Spoon 10cm BSH 32g",
-              "price": "7,11 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4724-4724_58fe4fd0358664.16282599_rms10elj_large.jpg",
-              "title": "Rapala Minnow Spoon 10cm ELJ 32g",
-              "price": "7,11 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4725-4725_58fe4ff1789226.40446374_rms10flp_large.jpg",
-              "title": "Rapala Minnow Spoon 10cm FLP 32g",
-              "price": "7,11 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4726-4726_58fe500b3b6e47.91685075_rms10frghf_large.jpg",
-              "title": "Rapala Minnow Spoon 10cm FRGHF 32g",
-              "price": "7,11 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4727-4727_58ff8e840725f5.79427386_minnow-hfcgr_large.jpg",
-              "title": "Rapala Minnow Spoon 10cm HFCGR 32g",
-              "price": "7,11 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3259-3259_5718aafa787e80.68539780_-807-500x500_large.jpg",
-              "title": "Rapala Minnow Spoon 10cm MBT 32g",
-              "price": "7,11 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4728-4728_58fe50503c5f48.06462024_rms10pgr_large.jpg",
-              "title": "Rapala Minnow Spoon 10cm PGR 32g",
-              "price": "7,11 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4729-4729_58ff8eb8dad7d6.36087173_minnow_rygr_large.jpg",
-              "title": "Rapala Minnow Spoon 10cm RYGR 32g",
-              "price": "7,11 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4730-4730_58fe4df0918ce8.06839347_rms10sh_large.jpg",
-              "title": "Rapala Minnow Spoon 10cm SH 32g",
-              "price": "7,11 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4731-4731_58ff8ed9042a84.24165192_minnow_wrb_large.jpg",
-              "title": "Rapala Minnow Spoon 10cm WRB 32g",
-              "price": "7,11 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3339-3339_5718930dc345e7.91804895_rapala-minnow-spoon-elj-1456399264777_large.jpg",
-              "title": "Rapala Minnow Spoon 5cm ELJ 6g",
-              "price": "5,31 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3343-3343_571893d9568b92.16841938_rapala-minnow-spoon-flp-1297952857777_large.jpg",
-              "title": "Rapala Minnow Spoon 5cm FLP 6g",
-              "price": "5,31 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/97-97_54f064ede598a8.70327991_ft_large.jpg",
-              "title": "Rapala Minnow Spoon 5cm FT 6g",
-              "price": "5,31 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3340-3340_5718934a5ac045.16482803_rapala-minnow-spoon-fybt-1336492517777_large.jpg",
-              "title": "Rapala Minnow Spoon 5cm FYBT 6g",
-              "price": "5,31 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3341-3341_571893924012c7.01033296_rapala-minnow-spoon-fygt-1336492552777_large.jpg",
-              "title": "Rapala Minnow Spoon 5cm FYGT 6g",
-              "price": "5,31 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3342-3342_57189181b8bb35.68804694_101-101_54f06546083fd5.05484937_fyrt_large_large.jpg",
-              "title": "Rapala Minnow Spoon 5cm FYRT 6g",
-              "price": "5,31 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3344-3344_571894116eaeb8.27955899_rapala-minnow-spoon-gfrt-13560875780_large.jpg",
-              "title": "Rapala Minnow Spoon 5cm GFRT 6g",
-              "price": "5,31 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3345-3345_57189443d95890.16728705_rapala-minnow-spoon-gsd-1297949705777_large.jpg",
-              "title": "Rapala Minnow Spoon 5cm GSD 6g",
-              "price": "5,31 € (10%)",
-              "category": "Roolandid"
-            },
-            {
-              "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3346-3346_571894adc0e600.64287232_rapala-minnow-spoon-mbt-1336492722777_large.jpg",
-              "title": "Rapala Minnow Spoon 5cm MBT 6g",
-              "price": "5,31 € (10%)",
-              "category": "Roolandid"
-            }
-        ]   
-    
+
+
+const handMade = 
+[
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4722-4722_58fe4f290965f0.92666540_rms10bsf_large.jpg",
+      "title": "Rapala Minnow Spoon 10cm BSF 32g",
+      "price": "7,11 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4723-4723_58fe4fa293b911.56912470_rms10bsh_large.jpg",
+      "title": "Rapala Minnow Spoon 10cm BSH 32g",
+      "price": "7,11 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4724-4724_58fe4fd0358664.16282599_rms10elj_large.jpg",
+      "title": "Rapala Minnow Spoon 10cm ELJ 32g",
+      "price": "7,11 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4725-4725_58fe4ff1789226.40446374_rms10flp_large.jpg",
+      "title": "Rapala Minnow Spoon 10cm FLP 32g",
+      "price": "7,11 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4726-4726_58fe500b3b6e47.91685075_rms10frghf_large.jpg",
+      "title": "Rapala Minnow Spoon 10cm FRGHF 32g",
+      "price": "7,11 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4727-4727_58ff8e840725f5.79427386_minnow-hfcgr_large.jpg",
+      "title": "Rapala Minnow Spoon 10cm HFCGR 32g",
+      "price": "7,11 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3259-3259_5718aafa787e80.68539780_-807-500x500_large.jpg",
+      "title": "Rapala Minnow Spoon 10cm MBT 32g",
+      "price": "7,11 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4728-4728_58fe50503c5f48.06462024_rms10pgr_large.jpg",
+      "title": "Rapala Minnow Spoon 10cm PGR 32g",
+      "price": "7,11 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4729-4729_58ff8eb8dad7d6.36087173_minnow_rygr_large.jpg",
+      "title": "Rapala Minnow Spoon 10cm RYGR 32g",
+      "price": "7,11 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4730-4730_58fe4df0918ce8.06839347_rms10sh_large.jpg",
+      "title": "Rapala Minnow Spoon 10cm SH 32g",
+      "price": "7,11 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/4731-4731_58ff8ed9042a84.24165192_minnow_wrb_large.jpg",
+      "title": "Rapala Minnow Spoon 10cm WRB 32g",
+      "price": "7,11 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3339-3339_5718930dc345e7.91804895_rapala-minnow-spoon-elj-1456399264777_large.jpg",
+      "title": "Rapala Minnow Spoon 5cm ELJ 6g",
+      "price": "5,31 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3343-3343_571893d9568b92.16841938_rapala-minnow-spoon-flp-1297952857777_large.jpg",
+      "title": "Rapala Minnow Spoon 5cm FLP 6g",
+      "price": "5,31 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/97-97_54f064ede598a8.70327991_ft_large.jpg",
+      "title": "Rapala Minnow Spoon 5cm FT 6g",
+      "price": "5,31 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3340-3340_5718934a5ac045.16482803_rapala-minnow-spoon-fybt-1336492517777_large.jpg",
+      "title": "Rapala Minnow Spoon 5cm FYBT 6g",
+      "price": "5,31 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3341-3341_571893924012c7.01033296_rapala-minnow-spoon-fygt-1336492552777_large.jpg",
+      "title": "Rapala Minnow Spoon 5cm FYGT 6g",
+      "price": "5,31 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3342-3342_57189181b8bb35.68804694_101-101_54f06546083fd5.05484937_fyrt_large_large.jpg",
+      "title": "Rapala Minnow Spoon 5cm FYRT 6g",
+      "price": "5,31 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3344-3344_571894116eaeb8.27955899_rapala-minnow-spoon-gfrt-13560875780_large.jpg",
+      "title": "Rapala Minnow Spoon 5cm GFRT 6g",
+      "price": "5,31 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3345-3345_57189443d95890.16728705_rapala-minnow-spoon-gsd-1297949705777_large.jpg",
+      "title": "Rapala Minnow Spoon 5cm GSD 6g",
+      "price": "5,31 € (10%)",
+      "category": "Roolandid"
+    },
+    {
+      "imgSrc": "http://www.kalastus.eu/media/kalastus-eu/.product-image/small/product/erply.s3.amazonaws.com/3346-3346_571894adc0e600.64287232_rapala-minnow-spoon-mbt-1336492722777_large.jpg",
+      "title": "Rapala Minnow Spoon 5cm MBT 6g",
+      "price": "5,31 € (10%)",
+      "category": "Roolandid"
+    }
+]   
+
 
 
 

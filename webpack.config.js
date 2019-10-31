@@ -18,6 +18,15 @@ module.exports = {
     }
     ])
   ],
+  devServer: {
+    historyApiFallback: true,
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000,
+    proxy: {
+      '/api': 'http://localhost:3000'
+    }
+  },
   module:{
     rules: [
       {
@@ -35,16 +44,12 @@ module.exports = {
         use: {
           loader: "babel-loader",
         }
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader','css-loader'],
       }
     ]
   },
-  devServer: {
-    historyApiFallback: true,
-    contentBase: path.join(__dirname, 'dist'),
-    compress: true,
-    port: 9000,
-    proxy: {
-      '/api': 'http://localhost:3000'
-    }
-  }
+  
 };
