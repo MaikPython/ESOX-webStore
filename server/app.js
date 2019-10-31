@@ -1,16 +1,16 @@
-const express = require('express')
-const app = express()
-const PORT = process.env.PORT || 3000
-const path = require("path")
-const itemRouter = require('./item.router.js')
-const userRouter = require("./user.router.js")
-const mongoose = require('mongoose');
-//require('dotenv').config()
-const DB = require("./database.js")
-const Item = require('./item.model.js')
-const bodyParser = require("body-parser")
+const express =     require('express')
+const app =         express()
+const PORT =        process.env.PORT || 3000
+const path =        require("path")
+const itemRouter =  require('./item.router.js')
+const userRouter =  require("./user.router.js")
+const mongoose =    require('mongoose');
+const DB =          require("./database.js")
+const Item =        require('./item.model.js')
+const bodyParser =  require("body-parser")
+const authRouter =  require('./auth.router')
 
-
+//Check for deploying into heroku
 if(process.env.NODE_ENV !== "production"){
   require('dotenv').config()
 }
@@ -19,9 +19,10 @@ DBurl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}${process.en
 
 
 app.use(bodyParser.json())
-
-app.use(itemRouter)
-app.use(userRouter)
+app.use('/api/v1/auth', authRouter)
+app.use('/api/v1', itemRouter)
+app.use('/api/v1/users', userRouter)
+app.use("/", express.static('dist'))
 
 
 app.get('/', (req, res) => {
@@ -46,7 +47,6 @@ app.get('/items/*', (req, res) => {
   res.sendFile(path.resolve(__dirname, "../dist", "index.html"))
 })
 
-app.use("/", express.static('dist'))
 
 function listen(){
   app.listen(PORT, () => {
@@ -54,7 +54,6 @@ function listen(){
     console.log(`http://localhost:${PORT}`)
   })
 }
-
 
 
 mongoose.connect(DBurl)

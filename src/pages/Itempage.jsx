@@ -16,7 +16,7 @@ class Itempage extends React.Component{
     }
 
     fetchItem = () =>{
-        fetch(`/api/items/${this.props.match.params.itemId}`)
+        fetch(`/api/v1/items/${this.props.match.params.itemId}`)
         .then(res =>{
             console.log(res, " --> respone")
             return res.json()

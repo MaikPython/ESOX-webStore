@@ -22,7 +22,7 @@ class Homepage extends React.Component{
     }
 
     fetchItems = () => { 
-        fetch("/api/items")
+        fetch("/api/v1/items")
         .then(res=>{
             return res.json()
         }).then(items=>{

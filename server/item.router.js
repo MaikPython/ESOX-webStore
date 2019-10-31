@@ -11,15 +11,7 @@ router.delete("/api/items/:itemId", (req, res)=>{
     })
 })
 
-
-
-router.post('/api/items', (req, res) => {
-    const props = {
-        imgSrc: "google.com",
-        title: "phone",
-        price: 200,
-        category: "phones",
-    }
+router.post('/items', (req, res) => {
     const item1 = new Item(props)
     item1.save( err => {
         if(err){
@@ -33,7 +25,7 @@ router.post('/api/items', (req, res) => {
 })
 
 
-router.get('/api/items', (req, res)=>{
+router.get('/items', (req, res)=>{
     Item.find({}, (err, items)=>{
         if(err){
             console.log(err, '  error')
@@ -44,7 +36,7 @@ router.get('/api/items', (req, res)=>{
     })
 })
 
-router.get("/api/items/:itemId", (req, res)=>{
+router.get("/items/:itemId", (req, res)=>{
     Item.findById(req.params.itemId, (err, item)=>{
         if(err){
             console.log(err, '  error happened')
@@ -53,7 +45,6 @@ router.get("/api/items/:itemId", (req, res)=>{
         }
         res.send(item)
     })
-    // res.send(DB.getItem(req.params.itemId)) 
 })
 
 
