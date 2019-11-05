@@ -105,7 +105,7 @@ class App extends React.Component{
 
                     {/*------------------------ PRIVATE ROUTES ------------------------*/}
 
-                    <this.PrivateRoute path="/users/:userId" component ={ <UserPage user = {this.state.user} />}/>   
+                    <Route path="/users/:userId" component ={UserPage}/>   
                     <Route component={Notfoundpage} />
 
                 </Switch>
