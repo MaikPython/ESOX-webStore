@@ -3,33 +3,35 @@ import { Link } from "react-router-dom";
 import { profileIcon, cartIcon } from './../icons.js'
 import './header.css'
 import PropTypes from 'prop-types'
+import {AuthContext } from './../index.jsx'
 
-
-const Header = ({user, token, onLogout}) => {
+const Header = () => {
 
    
-    console.log(token, 'is the ')
-    console.log(user, 'is the user')
+
     const logoPic = "/assets/logo.jpg"
     return(
-        <div className="menu">
-            <Link to={"/items"}>
-                <img src={logoPic} alt="logo" width="100" height="100"/>
-            </Link>
-           { !user.email && <LoginRegisterIcon /> }
-           {  user.email && <UserWelcomeIcon user = {user} onLogout={onLogout}/>   }
-            
-        </div>
+        <AuthContext.Consumer>
+            {
+            (contextValue) => (
+                
+                <div className="menu">
+                    <Link to={"/items"}>
+                        <img src={logoPic} alt="logo" width="100" height="100"/>
+                    </Link>
+                { !contextValue.user.email && <LoginRegisterIcon /> }
+                {  contextValue.user.email && <UserWelcomeIcon user = {contextValue.user} onLogout={contextValue.onLogout}/>   }
+                    
+                </div>
+                )
+            }
+        </AuthContext.Consumer>
+        
     )
 }
 
 
-Header.propTypes = {
-    token    : PropTypes.string,
-    user     :  PropTypes.object,
-    onLogout : PropTypes.func.isRequired
 
-}
 
 const LoginRegisterIcon = () =>{
     return(
