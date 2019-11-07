@@ -1,7 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import Header from "./components/Header.jsx"
+import Cookies from 'universal-cookie';
 
 import Homepage from "./pages/Homepage.jsx"
 import ItemPage from "./pages/Itempage.jsx"
@@ -9,26 +10,28 @@ import LandingPage from "./pages/Landingpage.jsx"
 import LoginPage from "./pages/LoginPage.jsx"
 import SignupPage from "./pages/SignupPage.jsx"
 import UserPage from "./pages/UserPage.jsx"
-import Cookies from 'universal-cookie';
+import Notfoundpage from './pages/Notfoundpage.jsx'
+import ShoppingCartPage from './pages/ShoppingCartPage.jsx'
 
-const node = document.getElementById("app")
+const cookies = new Cookies()
+
+const authDefaultValue = {
+    token: null,
+    user: {
+        email       : null,
+        _id         : null,
+        createdAt   : null
+    },
+    cookie: cookies.get('mycockycookie') || null  
+}
+
+export const AuthContext = React.createContext(authDefaultValue)
 
 class App extends React.Component{
     constructor(props){
         super(props)
 
-        const cookies = new Cookies();
-        const displayCookie = cookies.get('mycockycookie') || null   
-
-        this.state={
-            token: null,
-            user: {
-                email       : null,
-                _id         : null,
-                createdAt   : null
-            },
-            cookie: displayCookie
-        }
+        this.state = authDefaultValue
         this.handleCookie = this.handleCookie.bind(this)
     }
     
@@ -80,37 +83,39 @@ class App extends React.Component{
 
     render(){
         return(
+        <AuthContext.Provider value = {this.state}>
+            <BrowserRouter>
+                <Route path={"/"} component={Header} />
+                <Switch>
+                    {/*------------------------ PUBLIC ROUTES ------------------------*/}
 
-        <BrowserRouter>
+                    <Route path="/items"         exact component = {Homepage}     />
+                    
+                    <Route path="/login"         
+                    exact 
+                    render = {(props) => 
+                    <LoginPage {...props} onLogin = {this.handleLogin} handleCookie={this.handleCookie}  />  }   
+                    />   
 
-            {/*------------------------ PUBLIC ROUTES ------------------------*/}
+                    <Route path="/signup"        exact component = {SignupPage}   />
+                    <Route path="/"              exact component = {LandingPage}  />
+                    <Route path="/items/:itemId" exact component = {ItemPage}     />
+                    <Route path="/shoppingcart"  exact component = {ShoppingCartPage} />
 
-            <Route path={"/"} 
-            render = {(props) => 
-            <Header {...props} token = {this.state.token} user = {this.state.user} onLogout = {this.handleLogOut}/>} 
-            />
+                    {/*------------------------ PRIVATE ROUTES ------------------------*/}
 
-            <Route path="/login"         
-            exact 
-            render = {(props) => 
-            <LoginPage {...props} onLogin = {this.handleLogin} handleCookie={this.handleCookie}  />  }   
-            />   
-      
-            <Route path="/signup"        exact component = {SignupPage}  />
-            <Route path="/"              exact component = {LandingPage} />
-            <Route path="/items"         exact component = {Homepage}    />
-            <Route path="/items/:itemId" exact component = {ItemPage}    />
+                    <Route path="/users/:userId" component ={UserPage}/>   
+                    <Route component={Notfoundpage} />
 
-
-
-            {/*------------------------ PRIVATE ROUTES ------------------------*/}
-
-            <this.PrivateRoute path="/users/:userId" component ={ <UserPage user = {this.state.user} />}/>             
-      
-        </BrowserRouter>
+                </Switch>
+            </BrowserRouter>
+        </AuthContext.Provider>
         )
     }
 }
+
+const node = document.getElementById("app")
+
 
 ReactDOM.render(
     <App />,

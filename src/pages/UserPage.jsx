@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-
+import authConsumer from './../components/authConsumer.jsx'
+import protectedRedirect from './../components/protectedRedircet.jsx'
 
 class UserPage extends Component {
     render() {
@@ -20,4 +21,4 @@ UserPage.propTypes = {
 
 
 
-export default UserPage;
+export default authConsumer(protectedRedirect(UserPage));

@@ -3,11 +3,9 @@ import { Link } from "react-router-dom";
 import { profileIcon, cartIcon } from './../icons.js'
 import './header.css'
 import PropTypes from 'prop-types'
-
+import authConsumer from './authConsumer.jsx'
 
 const Header = ({user, token, onLogout}) => {
-
-   
     console.log(token, 'is the ')
     console.log(user, 'is the user')
     const logoPic = "/assets/logo.jpg"
@@ -37,7 +35,9 @@ const LoginRegisterIcon = () =>{
             <Link to={"/login"}>
                 <img className="profile-icon"src={profileIcon} width="50" height="50"/>
             </Link>
-            <img className="cart-icon" src={cartIcon} width="50" height="50"/>
+            <Link to={"/shoppingcart"}>
+                <img className="cart-icon" src={cartIcon} width="50" height="50"/>
+            </Link>
         </div>
     )
 }
@@ -65,4 +65,4 @@ UserWelcomeIcon.propTypes = {
 
 }
 
-export default Header
+export default authConsumer(Header)
