@@ -35,7 +35,9 @@ const LoginRegisterIcon = () =>{
             <Link to={"/login"}>
                 <img className="profile-icon"src={profileIcon} width="50" height="50"/>
             </Link>
-            <img className="cart-icon" src={cartIcon} width="50" height="50"/>
+            <Link to={"/shoppingcart"}>
+                <img className="cart-icon" src={cartIcon} width="50" height="50"/>
+            </Link>
         </div>
     )
 }

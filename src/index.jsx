@@ -11,6 +11,7 @@ import LoginPage from "./pages/LoginPage.jsx"
 import SignupPage from "./pages/SignupPage.jsx"
 import UserPage from "./pages/UserPage.jsx"
 import Notfoundpage from './pages/Notfoundpage.jsx'
+import ShoppingCartPage from './pages/ShoppingCartPage.jsx'
 
 const cookies = new Cookies()
 
@@ -90,7 +91,6 @@ class App extends React.Component{
 
                     <Route path="/items"         exact component = {Homepage}     />
                     
-
                     <Route path="/login"         
                     exact 
                     render = {(props) => 
@@ -100,8 +100,7 @@ class App extends React.Component{
                     <Route path="/signup"        exact component = {SignupPage}   />
                     <Route path="/"              exact component = {LandingPage}  />
                     <Route path="/items/:itemId" exact component = {ItemPage}     />
-                    {/* <Route path="*"              exact component = {Notfoundpage} /> */}
-
+                    <Route path="/shoppingcart"  exact component = {ShoppingCartPage} />
 
                     {/*------------------------ PRIVATE ROUTES ------------------------*/}
 
