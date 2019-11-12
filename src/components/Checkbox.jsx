@@ -4,10 +4,13 @@ import PropTypes from "prop-types";
 export default class Checkbox extends Component {
   
   render() {
+    console.log("selected: ", this.props.selected)
+     
     return (
-      <div>  
+      <div className="home-page-selection-selector" style={{display:"flex"}}> 
+       
           <div>Käsitöölandid
-              <input type="checkbox" value="Leechid"  onChange={this.props.handleCheckBox}/>
+              <input type="checkbox" value="Leechid"  onChange ={this.props.handleCheckBox} checked={this.props.selected}/>
               <span></span>
           </div>
           
@@ -21,4 +24,6 @@ export default class Checkbox extends Component {
 }
 Checkbox.propTypes = {
     handleCheckBox: PropTypes.any.isRequired,
+    selected: PropTypes.bool.isRequired,
+    handleDefaultCheckBoxValue: PropTypes.func.isRequired
 }

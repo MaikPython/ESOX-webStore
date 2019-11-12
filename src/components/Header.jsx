@@ -5,15 +5,14 @@ import './header.css'
 import PropTypes from 'prop-types'
 import authConsumer from './authConsumer.jsx'
 
-const Header = ({user, token, onLogout}) => {
-    console.log(token, 'is the ')
-    console.log(user, 'is the user')
+const Header = ({user, onLogout}) => {
     const logoPic = "/assets/logo.jpg"
     return(
         <div className="menu">
             <Link to={"/items"}>
-                <img src={logoPic} alt="logo" width="100" height="100"/>
+                <img src={logoPic} alt="logo" width="80" height="80"/>
             </Link>
+            <h1>ESOX</h1>
            { !user.email && <LoginRegisterIcon /> }
            {  user.email && <UserWelcomeIcon user = {user} onLogout={onLogout}/>   }
             
@@ -32,11 +31,12 @@ Header.propTypes = {
 const LoginRegisterIcon = () =>{
     return(
     <div className="header-items">
-            <Link to={"/login"}>
-                <img className="profile-icon"src={profileIcon} width="50" height="50"/>
+            <Link className="header-login" to={"/login"}>
+                <img className="profile-icon"  src={profileIcon} width="45" height="45"/>
+                <p className="login-text">Logi sisse</p>
             </Link>
             <Link to={"/shoppingcart"}>
-                <img className="cart-icon" src={cartIcon} width="50" height="50"/>
+                <img className="cart-icon" src={cartIcon} width="45" height="45"/>
             </Link>
         </div>
     )

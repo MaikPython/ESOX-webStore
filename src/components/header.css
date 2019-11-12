@@ -1,3 +1,34 @@
-.profile-icon{
-    margin-left: 5%
+
+.menu{   
+    display: flex;
+    background-color: white;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    
 }
+
+.header-items{
+    display: flex;
+    justify-content: flex-end;
+    /* align-items: center; */
+    margin-top: 10px
+}
+
+.header-login{
+    text-decoration: none;
+    font-size: 8px;
+    margin-right: 7px;
+}
+
+.login{
+}
+
+.login-text{
+    margin-bottom: 20px;
+    color: black;
+    margin-left: 4px;
+
+}
+

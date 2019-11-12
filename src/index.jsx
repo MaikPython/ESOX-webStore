@@ -1,8 +1,12 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./components/Header.jsx"
 import Cookies from 'universal-cookie';
+
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import reducers from './reducers'
 
 import Homepage from "./pages/Homepage.jsx"
 import ItemPage from "./pages/Itempage.jsx"
@@ -30,28 +34,10 @@ export const AuthContext = React.createContext(authDefaultValue)
 class App extends React.Component{
     constructor(props){
         super(props)
-
         this.state = authDefaultValue
         this.handleCookie = this.handleCookie.bind(this)
     }
     
-
-    PrivateRoute = ({component,  path}) =>{
-        const renderLogic = () => {
-            const cookieExists = (this.state.cookie !== null);
-            return cookieExists 
-                    ? component //<Component {...props} /> 
-                : <Redirect to={{pathname: '/items'}} />
-        }
-        return (
-          <Route
-            path = {path}
-            render={ renderLogic }
-            />
-        )
-    }
-
-
     handleLogin = ({token, user}) => {
         this.setState({
             user, token
@@ -83,33 +69,35 @@ class App extends React.Component{
 
     render(){
         return(
-        <AuthContext.Provider value = {this.state}>
-            <BrowserRouter>
-                <Route path={"/"} component={Header} />
-                <Switch>
-                    {/*------------------------ PUBLIC ROUTES ------------------------*/}
+        <Provider store={createStore(reducers)}>
+            <AuthContext.Provider value = {this.state}>
+                <BrowserRouter>
+                    <Route path={"/"} component={Header} />
+                    <Switch>
+                        {/*------------------------ PUBLIC ROUTES ------------------------*/}
 
-                    <Route path="/items"         exact component = {Homepage}     />
-                    
-                    <Route path="/login"         
-                    exact 
-                    render = {(props) => 
-                    <LoginPage {...props} onLogin = {this.handleLogin} handleCookie={this.handleCookie}  />  }   
-                    />   
+                        <Route path="/items"         exact component = {Homepage}     />
+                        
+                        <Route path="/login"         
+                        exact 
+                        render = {(props) => 
+                        <LoginPage {...props} onLogin = {this.handleLogin} handleCookie={this.handleCookie}  />  }   
+                        />   
 
-                    <Route path="/signup"        exact component = {SignupPage}   />
-                    <Route path="/"              exact component = {LandingPage}  />
-                    <Route path="/items/:itemId" exact component = {ItemPage}     />
-                    <Route path="/shoppingcart"  exact component = {ShoppingCartPage} />
+                        <Route path="/signup"        exact component = {SignupPage}   />
+                        <Route path="/"              exact component = {LandingPage}  />
+                        <Route path="/items/:itemId" exact component = {ItemPage}     />
+                        <Route path="/shoppingcart"  exact component = {ShoppingCartPage} />
 
-                    {/*------------------------ PRIVATE ROUTES ------------------------*/}
+                        {/*------------------------ PRIVATE ROUTES ------------------------*/}
 
-                    <Route path="/users/:userId" component ={UserPage}/>   
-                    <Route component={Notfoundpage} />
+                        <Route path="/users/:userId" component ={UserPage}/>   
+                        <Route component={Notfoundpage} />
 
-                </Switch>
-            </BrowserRouter>
-        </AuthContext.Provider>
+                    </Switch>
+                </BrowserRouter>
+            </AuthContext.Provider>
+        </Provider>
         )
     }
 }

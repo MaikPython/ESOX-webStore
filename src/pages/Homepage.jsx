@@ -13,7 +13,8 @@ class Homepage extends React.Component{
             items: [],
             allCategories: ["Roolandid", "Leechid"],
             selectedCategories:[],
-            sortDirection: 1
+            sortDirection: 1,
+            selected: true
         }     
     }
 
@@ -47,7 +48,16 @@ class Homepage extends React.Component{
 
     }
 
+    handleDefaultCheckBoxValue = () => {
+        if(this.state.selected){
+        this.setState({
+            selectedCategories: "Leechid",
+        })
+        }
+    }
+
     handleCheckBox(){
+        this.setState({selected: !this.state.selected});
         let isChecked = event.target.checked
         if(isChecked){
             this.setState({
@@ -69,16 +79,22 @@ class Homepage extends React.Component{
     }
 
 
+
+
    
     render(){
     return(
     <div>
-        <Checkbox handleCheckBox = {this.handleCheckBox}/>
-        <SortDropdown 
-        direction = {this.state.sortDirection}
-        onChange = {this.handleSortDropdown}
-        />
-        <ItemList arrayOfItems = {this.getVisibleItems()} />
+        <div className="page-wrapper">
+            <div className="home-page-selector">
+                <Checkbox handleCheckBox = {this.handleCheckBox} selected={this.state.selected} handleDefaultCheckBoxValue={this.handleDefaultCheckBoxValue}/>
+                <SortDropdown 
+                direction = {this.state.sortDirection}
+                onChange = {this.handleSortDropdown}
+                />
+            </div>
+            <ItemList arrayOfItems = {this.getVisibleItems()} />
+        </div>
         <Footer />
     </div>
   )
