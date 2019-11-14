@@ -80,7 +80,7 @@ store.subscribe(() => console.log(store.getState()));
 export default store
 
 const removeItemById = (items, _id) => {
-const index = items.findIdex(item => item._id === _id)
+const index = items.findIndex(item => item._id === _id)
 if(index === -1){return items}
 const copy = items.slice()
 copy.splice(index, 1)
