@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 
 class SignupPage extends Component {
    constructor(props){
@@ -36,6 +37,7 @@ class SignupPage extends Component {
 
     render() {
         return (
+            <div className="form-content">
             <div className="form">
                     <form className="login-form" onSubmit={this.handleSubmit}>
                         <input 
@@ -57,9 +59,10 @@ class SignupPage extends Component {
                             name={"confirmPassword"}
                             onChange={this.handleChange} 
                         />
-                    <button>Sign Up</button>
-                    <p className="message">Not registered? <a href="#">Create an account</a></p>
+                    <button>Loo kasutaja</button>
+                    <p className="message">Sul on juba kasutaja? <Link to={'/login'}>Logi sisse</Link></p>
                     </form>
+            </div>
             </div>
         );
     }

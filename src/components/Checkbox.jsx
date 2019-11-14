@@ -10,7 +10,7 @@ export default class Checkbox extends Component {
       <div className="home-page-selection-selector" style={{display:"flex"}}> 
        
           <div>Käsitöölandid
-              <input type="checkbox" value="Leechid"  onChange ={this.props.handleCheckBox} checked={this.props.selected}/>
+              <input type="checkbox" value="Leechid" onClick={this.props.handleDefaultCheckBoxValue} onChange ={this.props.handleCheckBox} checked={this.props.selected}/>
               <span></span>
           </div>
           

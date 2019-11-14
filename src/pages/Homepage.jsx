@@ -12,7 +12,7 @@ class Homepage extends React.Component{
         this.state = {
             items: [],
             allCategories: ["Roolandid", "Leechid"],
-            selectedCategories:[],
+            selectedCategories:['Leechid'],
             sortDirection: 1,
             selected: true
         }     
@@ -49,15 +49,10 @@ class Homepage extends React.Component{
     }
 
     handleDefaultCheckBoxValue = () => {
-        if(this.state.selected){
-        this.setState({
-            selectedCategories: "Leechid",
-        })
-        }
+        this.setState({selected: !this.state.selected});
     }
 
     handleCheckBox(){
-        this.setState({selected: !this.state.selected});
         let isChecked = event.target.checked
         if(isChecked){
             this.setState({

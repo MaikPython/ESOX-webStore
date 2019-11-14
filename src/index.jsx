@@ -5,8 +5,7 @@ import Header from "./components/Header.jsx"
 import Cookies from 'universal-cookie';
 
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import reducers from './reducers'
+import store from './reducers'
 
 import Homepage from "./pages/Homepage.jsx"
 import ItemPage from "./pages/Itempage.jsx"
@@ -69,7 +68,7 @@ class App extends React.Component{
 
     render(){
         return(
-        <Provider store={createStore(reducers)}>
+        <Provider store={store}>
             <AuthContext.Provider value = {this.state}>
                 <BrowserRouter>
                     <Route path={"/"} component={Header} />

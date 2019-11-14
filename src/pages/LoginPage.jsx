@@ -41,24 +41,26 @@ class LoginPage extends Component {
     }
     render() {
         return (
-            <div className="form">
-                    <form className="login-form" onSubmit={this.handleSubmit}>
-                        <input 
-                            type="email" 
-                            placeholder="email"
-                            name="email"
-                            onChange={this.handleChange} 
-                        />
-                        <input 
-                            type="password" 
-                            placeholder="password"
-                            name="password"
-                            value = {this.state.password}
-                            onChange={this.handleChange} 
-                        />
-                    <button>login</button>
-                    <p className="message">Not registered? <Link to={"/signup"}>Create an account</Link></p>
-                    </form>
+            <div className="form-content">
+                <div className="form">
+                        <form className="login-form" onSubmit={this.handleSubmit}>
+                            <input 
+                                type="email" 
+                                placeholder="email"
+                                name="email"
+                                onChange={this.handleChange} 
+                            />
+                            <input 
+                                type="password" 
+                                placeholder="parool"
+                                name="password"
+                                value = {this.state.password}
+                                onChange={this.handleChange} 
+                            />
+                        <button>Logi sisse</button>
+                        <p className="message">Pole kasutajat? <Link to={"/signup"}>Loo kasutaja!</Link></p>
+                        </form>
+                </div>
             </div>
         );
     }
