@@ -3,14 +3,20 @@ import ItemList from "./../components/ItemList.jsx"
 import Footer from "./../components/Footer.jsx"
 import Checkbox from './../components/Checkbox.jsx'
 import SortDropdown from './../components/SortDropdown.jsx'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import { getItems } from "../reducers/index.js"
+import { ItemProps } from "./ShoppingCartPage.jsx"
 
-
-class Homepage extends React.Component{
+class Homepage extends React.Component{ 
+    static propTypes = {
+        dispatch: PropTypes.func.isRequired,
+        items: PropTypes.arrayOf(PropTypes.shape(ItemProps)).isRequired
+    }
     constructor(props){
         super(props)
         this.handleCheckBox = this.handleCheckBox.bind(this)
         this.state = {
-            items: [],
             allCategories: ["Roolandid", "Leechid"],
             selectedCategories:['Leechid'],
             sortDirection: 1,
@@ -18,26 +24,13 @@ class Homepage extends React.Component{
         }     
     }
 
-    componentDidMount(){
-        this.fetchItems()
-    }
 
-    fetchItems = () => { 
-        fetch("/api/v1/items")
-        .then(res=>{
-            return res.json()
-        }).then(items=>{
-            this.setState({
-                items
-            })
-        })
-        .catch(err=>{   
-            console.log(err, "error");        
-        })
+    componentDidMount(){
+        this.props.dispatch(getItems())
     }
 
     getVisibleItems = () =>{
-        return this.state.items
+        return this.props.items
         .filter( item => item.category === this.state.selectedCategories[0] || this.state.selectedCategories[1])
         .sort((a,b) =>{
             switch(this.state.sortDirection){
@@ -78,6 +71,7 @@ class Homepage extends React.Component{
 
    
     render(){
+        console.log(this.props.items, 'are the items')
     return(
     <div>
         <div className="page-wrapper">
@@ -96,4 +90,11 @@ class Homepage extends React.Component{
 }
 }
 
-export default Homepage
+const mapStateToProps = (store) => {
+    console.log(store, 'is the store')
+    return {
+        items: store.items
+    }
+}
+
+export default connect(mapStateToProps)(Homepage)

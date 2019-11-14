@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from "prop-types";
 import { IoIosTrash } from 'react-icons/io'
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import { removeItem } from '../actions';
-
 
 class CartPage extends React.PureComponent {
     static propTypes = {
