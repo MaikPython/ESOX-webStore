@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import authConsumer from './../components/authConsumer.jsx'
+import { userPropTypes } from '../reducers';
 import protectedRedirect from './../components/protectedRedircet.jsx'
+import { connect } from 'react-redux'
 
 class UserPage extends Component {
     render() {
+        console.log(this.props, "from user")
         return (
             <div>
                 <div>Email       : {this.props.user.email}</div>
@@ -16,9 +18,13 @@ class UserPage extends Component {
 
 
 UserPage.propTypes = {
-    user    : PropTypes.object.isRequired,
+    user    : PropTypes.shape(userPropTypes)
 }
 
+const mapStateToProps = (store) => {
+    return {
+        user: store.user,
+    }
+}
 
-
-export default authConsumer(protectedRedirect(UserPage));
+export default connect(mapStateToProps)(protectedRedirect(UserPage))

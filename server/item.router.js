@@ -11,7 +11,7 @@ router.delete("/api/items/:itemId", (req, res)=>{
     })
 })
 
-router.post('/items', (req, res) => {
+router.post('/', (req, res) => {
     const item1 = new Item(props)
     item1.save( err => {
         if(err){
@@ -25,7 +25,7 @@ router.post('/items', (req, res) => {
 })
 
 
-router.get('/items', (req, res)=>{
+router.get('/', (req, res)=>{
     Item.find({}, (err, items)=>{
         if(err){
             console.log(err, '  error')
@@ -36,7 +36,7 @@ router.get('/items', (req, res)=>{
     })
 })
 
-router.get("/items/:itemId", (req, res)=>{
+router.get("/:itemId", (req, res)=>{
     Item.findById(req.params.itemId, (err, item)=>{
         if(err){
             console.log(err, '  error happened')

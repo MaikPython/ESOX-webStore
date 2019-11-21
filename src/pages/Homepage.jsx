@@ -5,7 +5,7 @@ import Checkbox from './../components/Checkbox.jsx'
 import SortDropdown from './../components/SortDropdown.jsx'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { getItems } from "../reducers/index.js"
+import { getItems } from "../actions/"
 import { ItemProps } from "./ShoppingCartPage.jsx"
 
 class Homepage extends React.Component{ 

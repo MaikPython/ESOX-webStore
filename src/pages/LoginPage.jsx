@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import "./form.css"
 import {Link} from "react-router-dom"
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"
+import {connect} from 'react-redux'
+import { userUpdate } from '../actions'
+import { toast } from 'react-toastify'
 
 class LoginPage extends Component {
     constructor(props){
@@ -22,15 +25,16 @@ class LoginPage extends Component {
              body: JSON.stringify(this.state),
          })
          .then(res => res.json())
-         .then(({token, user}) => {
-             console.log(token, user)
-             this.props.onLogin({token, user})
-             this.props.handleCookie(token)
-             this.props.history.push(`/users/${user._id}`)
-         })
+         .then( this.handleSuccess )
          .catch(err =>{
              console.log("error", err)
+             toast.success("Logimine ebaõnnestus!")
          })
+    }
+
+    handleSuccess = ({user}) => {
+        this.props.dispatch(userUpdate(user))
+        this.props.history.push(`/users/${user._id}`)
     }
 
     handleChange = (event) => {
@@ -68,8 +72,7 @@ class LoginPage extends Component {
 
 LoginPage.propTypes = {
     history         : PropTypes.object.isRequired,
-    onLogin         : PropTypes.func.isRequired,
-    handleCookie    : PropTypes.func.isRequired
+    dispatch        : PropTypes.func.isRequired
 }
 
-export default LoginPage;
+export default connect()(LoginPage)

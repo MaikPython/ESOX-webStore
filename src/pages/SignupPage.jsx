@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 class SignupPage extends Component {
    constructor(props){
@@ -25,6 +26,7 @@ class SignupPage extends Component {
          })
          .catch(err =>{
              console.log("error", err)
+             toast.success("Registreerumine ebaõnnestus!")
          })
     }
 

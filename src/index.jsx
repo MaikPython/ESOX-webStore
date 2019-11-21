@@ -5,7 +5,9 @@ import Header from "./components/Header.jsx"
 import Cookies from 'universal-cookie';
 
 import { Provider } from 'react-redux'
-import store from './reducers'
+import configureStore from './store/configureStore'
+import { PersistGate } from 'redux-persist/integration/react'
+import { ToastContainer, toast } from 'react-toastify';
 
 import Homepage from "./pages/Homepage.jsx"
 import ItemPage from "./pages/Itempage.jsx"
@@ -16,33 +18,19 @@ import UserPage from "./pages/UserPage.jsx"
 import Notfoundpage from './pages/Notfoundpage.jsx'
 import ShoppingCartPage from './pages/ShoppingCartPage.jsx'
 
-const cookies = new Cookies()
+// const cookies = new Cookies()
 
-const authDefaultValue = {
-    token: null,
-    user: {
-        email       : null,
-        _id         : null,
-        createdAt   : null
-    },
-    cookie: cookies.get('mycockycookie') || null  
-}
+const {store, persistor} = configureStore()
 
-export const AuthContext = React.createContext(authDefaultValue)
+
+
 
 class App extends React.Component{
     constructor(props){
         super(props)
-        this.state = authDefaultValue
-        this.handleCookie = this.handleCookie.bind(this)
+        // this.handleCookie = this.handleCookie.bind(this)
     }
-    
-    handleLogin = ({token, user}) => {
-        this.setState({
-            user, token
-        })
-    }
-
+   
     handleLogOut = () => {
         const cookies = new Cookies();
         cookies.remove('mycockycookie')
@@ -69,33 +57,28 @@ class App extends React.Component{
     render(){
         return(
         <Provider store={store}>
-            <AuthContext.Provider value = {this.state}>
-                <BrowserRouter>
-                    <Route path={"/"} component={Header} />
-                    <Switch>
-                        {/*------------------------ PUBLIC ROUTES ------------------------*/}
+            <PersistGate loading={null} persistor={persistor}>
+                <ToastContainer enableMultiContainer position={toast.POSITION.BOTTOM_LEFT} />
+                    <BrowserRouter>
+                        <Route path={"/"} component={Header} />
+                        <Switch>
+                            {/*------------------------ PUBLIC ROUTES ------------------------*/}
 
-                        <Route path="/items"         exact component = {Homepage}     />
-                        
-                        <Route path="/login"         
-                        exact 
-                        render = {(props) => 
-                        <LoginPage {...props} onLogin = {this.handleLogin} handleCookie={this.handleCookie}  />  }   
-                        />   
+                            <Route path="/items"         exact component = {Homepage}     />
+                            <Route path="/login"         exact component = {LoginPage}/>   
+                            <Route path="/signup"        exact component = {SignupPage}   />
+                            <Route path="/"              exact component = {LandingPage}  />
+                            <Route path="/items/:itemId" exact component = {ItemPage}     />
+                            <Route path="/shoppingcart"  exact component = {ShoppingCartPage} />
 
-                        <Route path="/signup"        exact component = {SignupPage}   />
-                        <Route path="/"              exact component = {LandingPage}  />
-                        <Route path="/items/:itemId" exact component = {ItemPage}     />
-                        <Route path="/shoppingcart"  exact component = {ShoppingCartPage} />
+                            {/*------------------------ PRIVATE ROUTES ------------------------*/}
 
-                        {/*------------------------ PRIVATE ROUTES ------------------------*/}
+                            <Route path="/users/:userId" component ={UserPage}/>   
+                            <Route component={Notfoundpage} />
 
-                        <Route path="/users/:userId" component ={UserPage}/>   
-                        <Route component={Notfoundpage} />
-
-                    </Switch>
-                </BrowserRouter>
-            </AuthContext.Provider>
+                        </Switch>
+                    </BrowserRouter>
+            </PersistGate>
         </Provider>
         )
     }

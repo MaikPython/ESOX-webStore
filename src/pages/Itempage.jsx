@@ -3,9 +3,10 @@ import React from "react"
 import Footer from "../components/Footer.jsx"
 import PropTypes from "prop-types";
 import { connect } from 'react-redux'
-import {addItem} from './../actions'
-
-
+import { addItem } from './../actions'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+ 
 class Itempage extends React.Component{
 
     constructor(props){
@@ -20,6 +21,8 @@ class Itempage extends React.Component{
     handleBuy = () => {
         console.log("I was called")
         this.props.dispatch(addItem((this.state)))
+        toast.success("Toode lisatud!")
+
     }
 
     fetchItem = () => {

@@ -1,20 +1,35 @@
-import { createStore, applyMiddleware } from 'redux'
-import logger from 'redux-logger'
-import thunk from 'redux-thunk'
-
+import PropTypes from 'prop-types'
 
 const initialState = {
-  user: {
-      email       : null,
-      _id         : null,
-      createdAt   : null,     
-  },
+  token: null,
+  user: null,
   cart: [],
   items: []
 }
 
-const reducer = (state = initialState, action) => {
+export const userPropTypes = {
+  _id: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+}
+
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
+
+    case 'USER_UPDATE':{
+      return{
+        ...state,
+        user: action.payload
+      }
+    }
+    
+    case 'TOKEN_UPDATE':{
+      return{
+        ...state,
+        token: action.payload
+      }
+    }
+
     case 'ITEMS_SUCCESS': {
       return{
         ...state,
@@ -40,44 +55,6 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-
-export const getItems = () => (dispatch, getState) => {
-
-  if(getState().items.length > 0) return null;
-
-  dispatch(itemsRequest())
-  return fetch("api/v1/items")
-    .then(res => {
-      return res.json()
-    })
-    .then(items => {
-      dispatch(itemsSuccess(items))
-    })
-    .catch(err => {
-      console.log(err) 
-      dispatch(itemsFailure())
-    })
-}
-
-export const itemsSuccess = (items) => ({
-  type : 'ITEMS_SUCCESS',
-  payload: items
-})
-
-export const itemsRequest = (items) => ({
-  type : 'ITEMS_REQUEST',
-  payload: items,
-})
-
-export const itemsFailure = (items) => ({
-  type : 'ITEMS_FAILURE',
-  payload: items
-})
-
-const store = createStore(reducer, applyMiddleware(thunk, logger))
-store.subscribe(() => console.log(store.getState()));
-
-export default store
 
 const removeItemById = (items, _id) => {
 const index = items.findIndex(item => item._id === _id)

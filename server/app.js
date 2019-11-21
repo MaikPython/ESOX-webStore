@@ -2,13 +2,11 @@ const express =     require('express')
 const app =         express()
 const PORT =        process.env.PORT || 3000
 const path =        require("path")
-const itemRouter =  require('./item.router.js')
-const userRouter =  require("./user.router.js")
 const mongoose =    require('mongoose');
 const DB =          require("./database.js")
 const Item =        require('./item.model.js')
 const bodyParser =  require("body-parser")
-const authRouter =  require('./auth.router')
+const apiRouter  =  require('./apiRouter.js')
 
 //Check for deploying into heroku
 if(process.env.NODE_ENV !== "production"){
@@ -19,11 +17,9 @@ DBurl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}${process.en
 
 
 app.use(bodyParser.json())
-app.use('/api/v1/auth', authRouter)
-app.use('/api/v1', itemRouter)
-app.use('/api/v1/users', userRouter)
-app.use("/", express.static('dist'))
 
+app.use("/", express.static('dist'))
+app.use(apiRouter)
 
 app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, "../dist", "index.html" ))

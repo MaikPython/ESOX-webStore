@@ -4,12 +4,17 @@ import { profileIcon, cartIcon } from './../icons.js'
 import { connect } from 'react-redux'
 import './header.css'
 import PropTypes from 'prop-types'
-import authConsumer from './authConsumer.jsx'
-
-
+import { userPropTypes } from "../reducers/index.js";
+import { userUpdate, tokenUpdate } from './../actions'
+import { useDispatch } from 'react-redux'
 
 const Header = ({user, cart}) => {
-    console.log("header", cart)
+    const dispatch = useDispatch()
+    const handleLogOut = () => {
+        dispatch(userUpdate(null))
+        dispatch(tokenUpdate(null))
+    }
+
     const logoPic = "/assets/logo.jpg"
     return(
         <div className="menu">
@@ -17,8 +22,8 @@ const Header = ({user, cart}) => {
                 <img src={logoPic} alt="logo" width="85" height="85"/>
             </Link>
             <h1>ESOX</h1>
-           { !user.email && <LoginRegisterIcon cart={cart}/> }
-           {  user.email && <UserWelcomeIcon user = {user} cart={cart}/>   }
+           {  !user && <LoginRegisterIcon cart={cart}/> }
+           {   user && <UserWelcomeIcon user = {user} cart={cart} handleLogOut={handleLogOut}/>   }
             
         </div>
     )
@@ -28,9 +33,8 @@ const Header = ({user, cart}) => {
 Header.propTypes = {
     cart     : PropTypes.any,
     token    : PropTypes.string,
-    user     : PropTypes.object,
-    onLogout : PropTypes.func.isRequired
-
+    user     : PropTypes.shape(userPropTypes),
+    handleLogOut : PropTypes.func.isRequired
 }
 
 const LoginRegisterIcon = ({cart}) =>{
@@ -48,29 +52,33 @@ const LoginRegisterIcon = ({cart}) =>{
     )
 }
 
-const UserWelcomeIcon = ({user, cart}) => {
+const UserWelcomeIcon = ({user, cart, handleLogOut}) => {
     const email = user.email
     const userName = email.split('@')[0]
+
     return(
         <div className="header-items">
              <Link to={`/users/${user._id}`} style={{textDecoration:"none"}}>
                 <img className="profile-icon" src={profileIcon} width="50" height="50"/>
                 <div style={{textAlign:"center", fontSize:"12px"}}>{userName}</div>
             </Link>
-            <Link to={"/shoppingcart"}>
+            <Link to={"/shoppingcart"} style={{padding:"10px"}}>
                 <img className="cart-icon" src={cartIcon} width="45" height="45"/>
                 <Badge>{cart.length}</Badge>
             </Link>
+            <p style={{cursor:"pointer", fontSize:"12px", display:"flex", alignItems:"center", padding: "10px", margin: "10px"}} onClick={()=> handleLogOut()}>Logi välja</p>
         </div>
     )
 }
 
 
+
 UserWelcomeIcon.propTypes = {
-    token   : PropTypes.string,
-    user    : PropTypes.object.isRequired,
-    onLogout : PropTypes.func.isRequired,
-    cart     : PropTypes.any,
+    token           : PropTypes.string,
+    user            : PropTypes.shape(userPropTypes),
+    cart            : PropTypes.any,
+    handleLogOut    : PropTypes.func,
+    dispatch        : PropTypes.func
 }
 
 LoginRegisterIcon.propTypes ={
@@ -88,10 +96,12 @@ Badge.propTypes = {
     children: PropTypes.number.isRequired
 }
 
-const mapStateToProps = (store) =>{
+const mapStateToProps = (store) => {
     return{
-        cart: store.cart
+        cart    : store.cart,
+        user    : store.user,
+        token   : store.token
     }
 }
 
-export default connect(mapStateToProps)(authConsumer(Header))
+export default connect(mapStateToProps)(Header)
