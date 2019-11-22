@@ -74,6 +74,19 @@ body, html, #app{
     right: 1%;
 }
 
+.dropdown-select{
+    width: 150px;
+    height: 30px;
+    font-family: 'Montserrat', sans-serif;  
+
+}
+
+select.dropdown-select-option{
+    box-shadow: 0 0 10px 100px #eee inset;
+
+}
+
+
 #shop_items{
     margin: 5%;
     display: flex; 

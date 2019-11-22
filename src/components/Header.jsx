@@ -40,13 +40,13 @@ Header.propTypes = {
 const LoginRegisterIcon = ({cart}) =>{
     return(
     <div className="header-items">
-            <Link className="header-login" to={"/login"}>
+            <Link className="header-login" to={"/login"} >
                 <img className="profile-icon"  src={profileIcon} width="45" height="45"/>
                 <p className="login-text">Logi sisse</p>
             </Link>
-            <Link to={"/shoppingcart"}>
+            <Link to={"/shoppingcart"} style={{padding:"10px", textDecoration:"none", color:"black"}}>
                 <img className="cart-icon" src={cartIcon} width="45" height="45"/>
-                <Badge>{cart.length}</Badge>
+                <Badge style={{textDecoration:"none"}}>{cart.length}</Badge>
             </Link>
         </div>
     )
@@ -57,16 +57,16 @@ const UserWelcomeIcon = ({user, cart, handleLogOut}) => {
     const userName = email.split('@')[0]
 
     return(
-        <div className="header-items">
+        <div className="header-items" >
              <Link to={`/users/${user._id}`} style={{textDecoration:"none"}}>
                 <img className="profile-icon" src={profileIcon} width="50" height="50"/>
                 <div style={{textAlign:"center", fontSize:"12px"}}>{userName}</div>
             </Link>
-            <Link to={"/shoppingcart"} style={{padding:"10px"}}>
+            <Link to={"/shoppingcart"} style={{padding:"10px", textDecoration:"none", color:"black"}}>
                 <img className="cart-icon" src={cartIcon} width="45" height="45"/>
                 <Badge>{cart.length}</Badge>
             </Link>
-            <p style={{cursor:"pointer", fontSize:"12px", display:"flex", alignItems:"center", padding: "10px", margin: "10px"}} onClick={()=> handleLogOut()}>Logi välja</p>
+            <p style={{cursor:"pointer", fontSize:"12px", display:"flex", alignItems:"center", marginRight: "15px"}} onClick={()=> handleLogOut()}>Logi välja</p>
         </div>
     )
 }
@@ -88,7 +88,7 @@ LoginRegisterIcon.propTypes ={
 const Badge = ({children}) => {
     if(children === 0){return null}
     return(
-        <span>{children}</span>
+        <span style={{marginRight:"10px"}}>{children}</span>
     )
 }
 

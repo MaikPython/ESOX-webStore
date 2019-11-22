@@ -21,9 +21,10 @@ class SignupPage extends Component {
              },
              body: JSON.stringify(this.state),
          })
-         .then(res => {
-             console.log("response", res)
-         })
+         .then( res => {
+            if(!res.ok) throw 'signup failed';
+            return res.json();
+          })
          .catch(err =>{
              console.log("error", err)
              toast.success("Registreerumine ebaõnnestus!")
@@ -52,7 +53,6 @@ class SignupPage extends Component {
                             type="password" 
                             placeholder="password"
                             name={"password"}
-                        
                             onChange={this.handleChange} 
                         />
                         <input 

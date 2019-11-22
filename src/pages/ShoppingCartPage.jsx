@@ -89,7 +89,7 @@ const Row = ({_id, title, imgSrc, category, price, onTrash}) => {
                 {price} €
             </div>
             <div className={"cell cell--small cell--center"}>
-                <IoIosTrash title={"Eemalda "} className="hover--opacity" onClick={()=> onTrash(_id)}/>
+                <IoIosTrash width="50" height="50" title={"Eemalda "}  onClick={()=> onTrash(_id)}/>
             </div>
         </div>
     );
