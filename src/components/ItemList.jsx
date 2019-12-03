@@ -45,7 +45,7 @@ const Item = (props) => {
             </Link>
 
         <div className="add-item-shopping-cart">
-            <MdAddShoppingCart style={{width:"25", height:"25"}} onClick={() => dispatch(addItem(props.arrayOfItems)) } />
+            <MdAddShoppingCart style={{width:"25", height:"25"}} onClick={() => dispatch(addItem(props.item)) } />
         </div>
         </div>
 
