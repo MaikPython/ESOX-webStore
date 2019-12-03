@@ -2,7 +2,6 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./components/Header.jsx"
-import Cookies from 'universal-cookie';
 
 import { Provider } from 'react-redux'
 import configureStore from './store/configureStore'
@@ -18,7 +17,6 @@ import UserPage from "./pages/UserPage.jsx"
 import Notfoundpage from './pages/Notfoundpage.jsx'
 import ShoppingCartPage from './pages/ShoppingCartPage.jsx'
 
-// const cookies = new Cookies()
 
 const {store, persistor} = configureStore()
 
@@ -32,8 +30,6 @@ class App extends React.Component{
     }
    
     handleLogOut = () => {
-        const cookies = new Cookies();
-        cookies.remove('mycockycookie')
         this.setState({
             user: {
                 email       : null,
@@ -41,16 +37,6 @@ class App extends React.Component{
                 createdAt   : null
             },            
             token: null,
-            cookie: null
-        })
-    }
-
-    handleCookie = (token) => {
-        const cookies = new Cookies();
-        cookies.set('mycockycookie', token, { path: '/' })
-        const cookMe = cookies.get('mycockycookie')
-        this.setState({
-            cookie: cookMe
         })
     }
 

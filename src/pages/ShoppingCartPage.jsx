@@ -5,17 +5,46 @@ import { connect } from "react-redux";
 import { removeItem } from '../actions';
 import { toast } from 'react-toastify'
 import * as selectors from './../../src/store/selectors'
-
+import * as services from './../../server/services'
 
 class CartPage extends React.PureComponent {
+    state = {
+        cartItems : []
+    }
+    
+    componentDidMount(){
+        this.fetchItems()
+    }
+    
+    fetchItems = () => {
+        const promises = this.props.cartItemIds.map(itemId => services.getItem({itemId}))
+        Promise.all(promises).then( items => {
+            this.setState({
+                cartItems : items
+            })
+        })
+        .catch(err => {
+            console.log(err)
+            toast.error('Failed fetching items')
+        })
+    }
+
+    componentDidUpdate(prevProps){
+        const prevPropIds = prevProps.cartItemIds.join('')
+        const currentIds = this.props.cartItemIds.join('')
+        if(prevPropIds !== currentIds){
+            this.fetchItems()
+        }
+    }
+
     static propTypes = {
-        cart: PropTypes.arrayOf(PropTypes.shape(ItemProps)).isRequired,
+        cartItemIds: PropTypes.arrayOf(PropTypes.shape(String)).isRequired,
         dispatch: PropTypes.func.isRequired,
     };
 
     calcNumbers = () => {
         const VAT = 20;
-        const sum = Math.round(this.props.cart.reduce((acc, item) => acc + item.price, 0));
+        const sum = Math.round(this.state.cartItems.reduce((acc, item) => acc + item.price, 0));
         const taxes = Math.round(sum / 100 * VAT);
         return {
             sum, taxes
@@ -24,7 +53,6 @@ class CartPage extends React.PureComponent {
 
     handleTrash = (_id) => {
         this.props.dispatch(removeItem(_id))
-        toast.success("Toode eemaldati")
     }
 
     render() {
@@ -34,7 +62,7 @@ class CartPage extends React.PureComponent {
                 <div className={"box cart"}>
                     <Table
                         onTrash={this.handleTrash}
-                        rows={this.props.cart}
+                        rows={this.state.cartItems}
                     />
                 </div>
                 <div className={"box cart_summary"}>
@@ -112,7 +140,7 @@ Row.propTypes = {
 
 const mapStateToProps = (store) => {
     return {
-        cart: selectors.getCart(store)
+        cartItemIds: selectors.getCart(store)
     };
 };
 

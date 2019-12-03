@@ -3,7 +3,7 @@ import "./form.css"
 import {Link} from "react-router-dom"
 import PropTypes from "prop-types"
 import {connect} from 'react-redux'
-import { userUpdate } from '../actions'
+import { userUpdate, tokenUpdate } from '../actions'
 import { toast } from 'react-toastify'
 import * as services from './../../server/services'
 
@@ -26,8 +26,9 @@ class LoginPage extends Component {
         })
     }
 
-    handleSuccess = ({user}) => {
+    handleSuccess = ({user, token}) => {
         this.props.dispatch(userUpdate(user))
+        this.props.dispatch(tokenUpdate(token))
         this.props.history.push(`/users/${user._id}`)
     }
 
