@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { getItems } from "../actions/"
 import { ItemProps } from "./ShoppingCartPage.jsx"
+import * as selectors from './../../src/store/selectors'
 
 class Homepage extends React.Component{ 
     static propTypes = {
@@ -93,7 +94,7 @@ class Homepage extends React.Component{
 const mapStateToProps = (store) => {
     console.log(store, 'is the store')
     return {
-        items: store.items
+        items: selectors.getItems(store)
     }
 }
 

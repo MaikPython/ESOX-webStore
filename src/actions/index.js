@@ -1,3 +1,6 @@
+import * as services from './../../server/services'
+import * as selectors from './../store/selectors'
+
 export const userUpdate = (user) => ({
     type: 'USER_UPDATE',
     payload: user
@@ -19,14 +22,10 @@ export const removeItem = (_id) => ({
 })
 
 export const getItems = () => (dispatch, getState) => {
-
-    if(getState().items.length > 0) return null
-  
+    const store = getState()
+    if(selectors.getItems(store).length > 0) return null
     dispatch(itemsRequest())
-    return fetch("api/v1/items")
-      .then(res => {
-        return res.json()
-      })
+    return services.getItems()
       .then(items => {
         dispatch(itemsSuccess(items))
       })

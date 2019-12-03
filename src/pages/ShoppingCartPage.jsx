@@ -4,6 +4,8 @@ import { IoIosTrash } from 'react-icons/io'
 import { connect } from "react-redux";
 import { removeItem } from '../actions';
 import { toast } from 'react-toastify'
+import * as selectors from './../../src/store/selectors'
+
 
 class CartPage extends React.PureComponent {
     static propTypes = {
@@ -110,7 +112,7 @@ Row.propTypes = {
 
 const mapStateToProps = (store) => {
     return {
-        cart: store.cart
+        cart: selectors.getCart(store)
     };
 };
 

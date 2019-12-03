@@ -1,31 +1,31 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
-
+import * as services from './../../server/services'
+import PropTypes from 'prop-types'
 class SignupPage extends Component {
-   constructor(props){
-        super(props)
-        this.state = {
-            email           : '',
-            password        : '',
-            confirmPassword : '',
-        }
+
+    static propTypes = {
+        history         : PropTypes.object.isRequired,
+
     }
+    constructor(props){
+            super(props)
+            this.state = {
+                email           : '',
+                password        : '',
+                confirmPassword : '',
+            }
+        }
      handleSubmit = (event) => {
          event.preventDefault(),
          console.log("submit", this.state);
-         fetch("/api/v1/auth/signup", {
-             method: "POST",
-             headers: {
-                 "Content-Type" : "application/json"
-             },
-             body: JSON.stringify(this.state),
+         services.signup(this.state)
+         .then(() => {
+            this.props.history.push('/login')
+            toast.success('Registreerumine oli edukas!')
          })
-         .then( res => {
-            if(!res.ok) throw 'signup failed';
-            return res.json();
-          })
-         .catch(err =>{
+         .catch(err => {
              console.log("error", err)
              toast.success("Registreerumine ebaõnnestus!")
          })

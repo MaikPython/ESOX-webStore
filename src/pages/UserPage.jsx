@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { userPropTypes } from '../reducers';
 import protectedRedirect from './../components/protectedRedircet.jsx'
 import { connect } from 'react-redux'
+import * as selectors from './../../src/store/selectors'
 
 class UserPage extends Component {
     render() {
@@ -23,7 +24,7 @@ UserPage.propTypes = {
 
 const mapStateToProps = (store) => {
     return {
-        user: store.user,
+        user: selectors.getUser(store)
     }
 }
 

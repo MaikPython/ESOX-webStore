@@ -5,6 +5,7 @@ import PropTypes from "prop-types"
 import {connect} from 'react-redux'
 import { userUpdate } from '../actions'
 import { toast } from 'react-toastify'
+import * as services from './../../server/services'
 
 class LoginPage extends Component {
     constructor(props){
@@ -17,19 +18,12 @@ class LoginPage extends Component {
      handleSubmit = (event) => {
          event.preventDefault(),
          console.log("submit", this.state);
-         fetch("/api/v1/auth/login", {
-             method: "POST",
-             headers: {
-                 "Content-Type" : "application/json"
-             },
-             body: JSON.stringify(this.state),
-         })
-         .then(res => res.json())
-         .then( this.handleSuccess )
-         .catch(err =>{
-             console.log("error", err)
-             toast.success("Logimine ebaõnnestus!")
-         })
+        services.login(this.state)
+        .then( this.handleSuccess )
+        .catch(err =>{
+                console.log("error", err)
+            toast.success("Logimine ebaõnnestus!")
+        })
     }
 
     handleSuccess = ({user}) => {

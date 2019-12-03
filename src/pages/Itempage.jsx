@@ -6,7 +6,8 @@ import { connect } from 'react-redux'
 import { addItem } from './../actions'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
- 
+import * as services from './../../server/services'
+
 class Itempage extends React.Component{
 
     constructor(props){
@@ -26,19 +27,14 @@ class Itempage extends React.Component{
     }
 
     fetchItem = () => {
-        fetch(`/api/v1/items/${this.props.match.params.itemId}`)
-        .then(res =>{
-            console.log(res, " --> respone")
-            return res.json()
-        })
+       services.getItem({itemId: this.props.match.params.itemId})
         .then(item=>{
-            console.log(item, "is the item")
             this.setState({
                 ...item
             })
         })
-        .catch(req =>{
-            console.log("item page", req)
+        .catch(error =>{
+            console.log("item page", error)
         })
     }
     

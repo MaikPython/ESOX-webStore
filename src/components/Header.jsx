@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import { userPropTypes } from "../reducers/index.js";
 import { userUpdate, tokenUpdate } from './../actions'
 import { useDispatch } from 'react-redux'
+import * as selectors from './../../src/store/selectors'
 
 const Header = ({user, cart}) => {
     const dispatch = useDispatch()
@@ -34,7 +35,7 @@ Header.propTypes = {
     cart     : PropTypes.any,
     token    : PropTypes.string,
     user     : PropTypes.shape(userPropTypes),
-    handleLogOut : PropTypes.func.isRequired
+    handleLogOut : PropTypes.func
 }
 
 const LoginRegisterIcon = ({cart}) =>{
@@ -98,9 +99,9 @@ Badge.propTypes = {
 
 const mapStateToProps = (store) => {
     return{
-        cart    : store.cart,
-        user    : store.user,
-        token   : store.token
+        cart    : selectors.getCart(store),
+        user    : selectors.getUser(store),
+        token   : selectors.getToken(store)
     }
 }
 
