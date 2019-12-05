@@ -2,7 +2,10 @@ import React from 'react'
 import { StripeProvider } from 'react-stripe-elements'
 import { Elements, CardElement } from 'react-stripe-elements'
 import { injectStripe } from 'react-stripe-elements'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import * as services from './../../server/services'
+import * as selectors from './../store/selectors'
 
 const Stripe = ({price}) => {
 
@@ -27,12 +30,21 @@ export default Stripe
 class StripeForm extends React.PureComponent {
     static propTypes = {
         stripe: PropTypes.object,
-        price: PropTypes.any    
+        price: PropTypes.any,
+        userId : PropTypes.string.isRequired,
+        token: PropTypes.string.isRequired
     }
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.stripe.createToken().then((result)=> {
-            console.log(result, 'result')
+        this.props.stripe.createToken().then(({error, token})=> {
+            console.log(error, token)
+            if(error) {
+                console.error('token error', error)
+                return;
+            }
+            services.checkout({stripeToken: token, userId: this.props.userId, token: this.props.token})
+            .then(obj => console.log('checkout', obj))
+            .catch(err => err)
         })
     }
 
@@ -48,6 +60,12 @@ class StripeForm extends React.PureComponent {
         )
     }
 }
+const mapStateToProps = (store) => (
+    {
+        userId: selectors.getUserId(store),
+        token: selectors.getToken(store)
+    }
+)
 
-const InjectedStripeForm = injectStripe(StripeForm) 
+const InjectedStripeForm = connect(mapStateToProps)(injectStripe(StripeForm))
 

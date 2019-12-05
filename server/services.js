@@ -78,3 +78,17 @@ export const signup = ({email, password}) => {
     })
 }
 
+export const checkout = ({stripeToken, userId, token}) => {
+    return fetch(`${basePath}/users/${userId}/checkout`, {
+        method: 'POST',
+        headers: {
+            'content-type' : 'application/json',
+            'Authorization': `Bearer ${token}`
+
+        },
+        body: JSON.stringify(stripeToken)
+    })
+    .then(res => {
+        if(!res.ok) throw 'checkout failed'
+    })
+}

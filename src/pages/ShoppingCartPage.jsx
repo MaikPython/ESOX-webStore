@@ -13,6 +13,12 @@ class CartPage extends React.PureComponent {
         cartItems : [],
         isModalVisible : false //TODO: Duplicate in itempage...
     }
+
+    static propTypes = {
+        cartItemIds: PropTypes.arrayOf(PropTypes.shape(String)).isRequired,
+        dispatch: PropTypes.func.isRequired,
+        // userId: PropTypes.   
+    };
     
     componentDidMount(){
         this.fetchItems()
@@ -48,11 +54,6 @@ class CartPage extends React.PureComponent {
             this.fetchItems()
         }
     }
-
-    static propTypes = {
-        cartItemIds: PropTypes.arrayOf(PropTypes.shape(String)).isRequired,
-        dispatch: PropTypes.func.isRequired,
-    };
 
     calcNumbers = () => {
         const VAT = 20;
