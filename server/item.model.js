@@ -8,6 +8,23 @@ const itemSchema = new mongoose.Schema({
     createdAt:  { type: Date, default: Date.now }
 })
 
+itemSchema.statics.getItems = function(itemIds){
+    return new Promise((resolve, reject) => {
+        const query = itemIds.map(id => mongoose.Types.ObjectId(id))
+        this.find({
+            '_id': {
+                $in: query
+            }
+        },(error, docs) => {
+            if(error){
+                console.log(error)
+                return reject('Failed to get itens')
+            }
+            resolve(docs)
+        })
+    })
+}
+
 const Item = mongoose.model('Item', itemSchema)
 
 module.exports = Item

@@ -73,12 +73,11 @@ router.delete('/:userId/cart/:itemId', (req, res) => {
     })
 })
 
-router.post('/:userId/checkout', authMiddleWare, (req, res) => {
-    console.log(req.body)
+router.post('/:userId/checkout', authMiddleWare, async(req, res) => {
+    const {error, amount} = await req.user.getCartAmount()
+    console.log({error, amount})
     res.send(200)
 })
-
-
 
 
 function handleError(err, res){
