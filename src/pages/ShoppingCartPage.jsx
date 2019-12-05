@@ -6,16 +6,28 @@ import { removeItem } from '../actions';
 import { toast } from 'react-toastify'
 import * as selectors from './../../src/store/selectors'
 import * as services from './../../server/services'
+import Modal from './../components/Modal.jsx'
 
 class CartPage extends React.PureComponent {
     state = {
-        cartItems : []
+        cartItems : [],
+        isModalVisible : false //TODO: Duplicate in itempage...
     }
     
     componentDidMount(){
         this.fetchItems()
     }
     
+    handleModal = () => {
+        console.log('Handle modal was called!')
+        this.setState({isModalVisible : !this.state.isModalVisible})
+    }
+
+    hideModal = () => {
+        console.log('Modal is hidden')
+        this.setState({isModalVisible: false})
+    }
+
     fetchItems = () => {
         const promises = this.props.cartItemIds.map(itemId => services.getItem({itemId}))
         Promise.all(promises).then( items => {
@@ -73,11 +85,12 @@ class CartPage extends React.PureComponent {
                             <tr><td>Kokku</td><td>{taxes + sum} €</td></tr>
                             <tr>
                                 <td></td>
-                                <td><button>Vormista ost</button></td>
+                                <td><div className="cart-page-buy-item"  onClick={this.handleModal}>Vormista ost</div></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <Modal isModalVisible={this.state.isModalVisible} hideModal={this.hideModal} price={taxes + sum}/>
             </div>
         );
     }
