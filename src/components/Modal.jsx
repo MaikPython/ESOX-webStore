@@ -10,7 +10,7 @@ const Modal = ({isModalVisible, hideModal, price}) => {
         <div className={hideShowModal}>
             <div className="modal-content">
                 < FaWindowClose onClick={hideModal}/>
-                <Stripe price={price}/>
+                <Stripe price={price} onSubmit={hideModal}/>
             </div>
 
         </div>

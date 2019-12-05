@@ -30,7 +30,7 @@ class CartPage extends React.PureComponent {
     }
 
     hideModal = () => {
-        console.log('Modal is hidden')
+        console.log('I was called')
         this.setState({isModalVisible: false})
     }
 

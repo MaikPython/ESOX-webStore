@@ -63,6 +63,19 @@ export const getItems = () => (dispatch, getState) => {
       dispatch(itemsFailure())
     })
   }
+
+  export const refrehUser = () => (dispatch, getState) => {
+    const store = getState()
+    const userId = selectors.getUserId(store)
+    const token = selectors.getToken(store)
+    services.getUser({userId, token})
+        .then(user => {
+            dispatch(userUpdate(user))
+        })
+        .catch(error => {
+            console.log(error, 'is the error')
+        })
+  }
   
   export const itemsSuccess = (items) => ({
     type : 'ITEMS_SUCCESS',

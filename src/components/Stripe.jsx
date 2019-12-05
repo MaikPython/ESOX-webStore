@@ -6,14 +6,15 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import * as services from './../../server/services'
 import * as selectors from './../store/selectors'
+import * as actions from './../actions'
 
-const Stripe = ({price}) => {
+const Stripe = ({price, onSubmit}) => {
 
     return(
         <div>
             <StripeProvider apiKey="pk_test_jGv4pRaVVmVZ7RcMGy2532c400opxWUnex">
                 <Elements>
-                    <InjectedStripeForm price={price}/>
+                    <InjectedStripeForm price={price} onSubmit={onSubmit}/>
                 </Elements>
             </StripeProvider>
         </div>
@@ -21,7 +22,8 @@ const Stripe = ({price}) => {
 }
 
 Stripe.propTypes = {
-    price: PropTypes.any
+    price: PropTypes.any,
+    onSubmit: PropTypes.func
 }
 
 export default Stripe
@@ -32,8 +34,11 @@ class StripeForm extends React.PureComponent {
         stripe: PropTypes.object,
         price: PropTypes.any,
         userId : PropTypes.string.isRequired,
-        token: PropTypes.string.isRequired
+        token: PropTypes.string.isRequired,
+        dispatch: PropTypes.func.isRequired,
+        onSubmit: PropTypes.func.isRequired
     }
+
     handleSubmit = (event) => {
         event.preventDefault()
         this.props.stripe.createToken().then(({error, token})=> {
@@ -43,7 +48,11 @@ class StripeForm extends React.PureComponent {
                 return;
             }
             services.checkout({stripeToken: token, userId: this.props.userId, token: this.props.token})
-            .then(obj => console.log('checkout', obj))
+            .then(obj => {
+                console.log('checkout', obj)
+                this.props.onSubmit()
+                this.props.dispatch(actions.refrehUser())
+            })
             .catch(err => err)
         })
     }

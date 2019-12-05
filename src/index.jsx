@@ -1,27 +1,15 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Header from "./components/Header.jsx"
+import { BrowserRouter } from "react-router-dom";
 
 import { Provider } from 'react-redux'
 import configureStore from './store/configureStore'
 import { PersistGate } from 'redux-persist/integration/react'
 import { ToastContainer, toast } from 'react-toastify';
-
-import Homepage from "./pages/Homepage.jsx"
-import ItemPage from "./pages/Itempage.jsx"
-import LandingPage from "./pages/Landingpage.jsx"
-import LoginPage from "./pages/LoginPage.jsx"
-import SignupPage from "./pages/SignupPage.jsx"
-import UserPage from "./pages/UserPage.jsx"
-import Notfoundpage from './pages/Notfoundpage.jsx'
-import ShoppingCartPage from './pages/ShoppingCartPage.jsx'
+import Router from './components/Router.jsx'
 
 
 const {store, persistor} = configureStore()
-
-
-
 
 class App extends React.Component{
     constructor(props){
@@ -45,24 +33,8 @@ class App extends React.Component{
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <ToastContainer enableMultiContainer position={toast.POSITION.BOTTOM_LEFT} />
-                    <BrowserRouter>
-                        <Route path={"/"} component={Header} />
-                        <Switch>
-                            {/*------------------------ PUBLIC ROUTES ------------------------*/}
-
-                            <Route path="/items"         exact component = {Homepage}     />
-                            <Route path="/login"         exact component = {LoginPage}/>   
-                            <Route path="/signup"        exact component = {SignupPage}   />
-                            <Route path="/"              exact component = {LandingPage}  />
-                            <Route path="/items/:itemId" exact component = {ItemPage}     />
-                            <Route path="/shoppingcart"  exact component = {ShoppingCartPage} />
-
-                            {/*------------------------ PRIVATE ROUTES ------------------------*/}
-
-                            <Route path="/users/:userId" component ={UserPage}/>   
-                            <Route component={Notfoundpage} />
-
-                        </Switch>
+                    <BrowserRouter>                       
+                        <Router />
                     </BrowserRouter>
             </PersistGate>
         </Provider>
